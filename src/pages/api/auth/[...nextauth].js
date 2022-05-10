@@ -1,5 +1,6 @@
 import nextAuth from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
+import db from "../../../util/database";
 export default nextAuth({
     providers: [
         CredentialsProvider({
@@ -10,16 +11,20 @@ export default nextAuth({
           // e.g. domain, username, password, 2FA token, etc.
           // You can pass any HTML attribute to the <input> tag through the object.
           credentials: {
-            email: { label: "Email", type: "email", placeholder: "jsmith@example.com" },
+            email: { label: "Email", type: "email", placeholder: "Email@example.com" },
             password: {  label: "Password", type: "password" }
           },
           async authorize(credentials, req) {
             // Add logic here to look up the user from the credentials supplied
-            const user = { id: 1, name: "J Smith", email: "jsmith@example.com", password: "12345678" }
-            console.log(req.body)
-            console.log(credentials)
-            if (credentials.email === 'jm1811324@gmail.com' && credentials.password === '12345678') {
-              // Any object returned will be saved in `user` property of the JWT
+            
+            console.log(req)
+            const User = { id: 1, name: "J Smith", email: "jsmith@example.com", roll: 'a01' }
+            db.connect();
+            let response = await db.query('SELECT * FROM USUARIO WHERE EMAIL = $1 AND PASSWORD = $2',[credentials.email,credentials.password]);
+            db.end();
+            const user = response.rows[0];
+            console.log("Usuario"+user)
+            if (user) {
               return user
             } else {
               // If you return null then an error will be displayed advising the user to check their details.
@@ -33,20 +38,26 @@ export default nextAuth({
       callbacks: {
           jwt: async({token,user}) =>{
               if (user){
-                  token.id = user.id
+                  token.id = user.id,
+                  token.email = user.email,
+                  token.name = user.name,
+                  token.roll = user.roll
               }
               return token
           },
           session: ({session, token}) => {
               if (token){
-                  session.id = token.id
+                  session.id = token.id,
+                  session.name = token.name,
+                  session.email = token.email,
+                  session.roll = token.roll
               }
               return session
           }
       },
-      secret:"test",
+      secret:"pi1_Test",
       jwt:{
-          secret: "test",
+          secret: "pi1_Test",
           encryption: true
       }
     });

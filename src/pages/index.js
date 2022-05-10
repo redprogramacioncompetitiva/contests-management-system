@@ -6,7 +6,10 @@ import { useSession, signIn, signOut } from "next-auth/react"
 
 export default function Component() {
   const { data: session } = useSession()
+  console.log(session)
   if (session) {
+    
+    
     return (
       <div className={styles.container}>
         <Head>
@@ -17,7 +20,7 @@ export default function Component() {
   
         <main className={styles.main}>
           <h1 className={styles.title}>
-            Welcome to <a href="https://nextjs.org">Next.js! </a> {session.user.name}
+            Welcome to <a href="https://nextjs.org">Next.js! </a> {session.name}
           </h1>
   
           <p className={styles.description}>
