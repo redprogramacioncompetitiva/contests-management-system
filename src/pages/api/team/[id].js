@@ -1,15 +1,17 @@
-import {db} from ".../../../util/database";
+import {db} from "../../../util/database";
 
-export default async function(req, res){
-    const {method,body} = req;
+export default async function (req, res) {
+    const {method, body} = req;
     const {id} = req.params;
-    if(method === "POST"){
-        const {userName,id_team} = body;
-        const result = await db.query(`
-            INSERT INTO USERS_TEAM ()
-            VALUES ($1,$2,$3)
-            RETURNING *
-        `, [name,description,image]);
-        res.status(200).json(result.rows[0]);
+    if (method === "POST") {
+        const {userName} = body;
+        const query = 'INSERT INTO USERS_TEAM (USERNAME, ID_TEAM) VALUES ($1, $2) RETURNING *';
+        const values = [userName, id];
+        try {
+            const response = await db.query(query, values);
+            return res.status(200).json(response.rows[0].json);
+        } catch (e) {
+            return res.status(400).json({message: e.message});
+        }
     }
 }
