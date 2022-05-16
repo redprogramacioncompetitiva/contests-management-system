@@ -1,5 +1,15 @@
 export default function Component() {
   
+    addCompetitorField = () => {
+      let CompetitorsFields = document.getElementById("Competitors-fields")
+      var div = document.createElement('div')
+      div.innerHTML = "<div>"+
+                      "<input type = 'text'></input>"+
+                      "<button type = 'button'>-</button>"+
+                      "<button type = 'button'>+</button>"+
+                      "</div>"
+      CompetitorsFields.appendChild(div)
+    }
     return (
     <div>
       <div className="row">
