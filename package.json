@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "create-next-app": "^12.1.6",
     "next": "12.1.6",
     "next-auth": "^4.3.4",
     "pg": "^8.7.3",
