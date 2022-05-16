@@ -1,14 +1,13 @@
 export default function Component() {
   
     let addCompetitorField = () => {
-      let CompetitorsFields = document.getElementById("Competitors-fields")
-      var div = document.createElement('div')
+      var competitorsFields = document.getElementById("competitors-fields");
+      var div = document.createElement('div');
       div.innerHTML = "<div>"+
                       "<input type = 'text'></input>"+
                       "<button type = 'button'>-</button>"+
-                      "<button type = 'button'>+</button>"+
-                      "</div>"
-      CompetitorsFields.appendChild(div)
+                      "</div>";
+      competitorsFields.appendChild(div)
     }
     return (
     <div>
@@ -23,7 +22,9 @@ export default function Component() {
           <input type="text"></input>
           <h5>¿Quiénes son?</h5>
           <div id="competitors-fields">
-          
+            <input type = 'text' ></input>
+            <button type = 'button' >-</button>
+            <button type = 'button' onMouseDown = {addCompetitorField}>+</button>
           </div>
           <button>Crear equipo</button>
           <br/>
