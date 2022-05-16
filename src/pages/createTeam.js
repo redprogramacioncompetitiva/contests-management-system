@@ -1,6 +1,6 @@
 export default function Component() {
   
-    addCompetitorField = () => {
+    let addCompetitorField = () => {
       let CompetitorsFields = document.getElementById("Competitors-fields")
       var div = document.createElement('div')
       div.innerHTML = "<div>"+
@@ -23,7 +23,7 @@ export default function Component() {
           <input type="text"></input>
           <h5>¿Quiénes son?</h5>
           <div id="competitors-fields">
-
+          
           </div>
           <button>Crear equipo</button>
           <br/>
