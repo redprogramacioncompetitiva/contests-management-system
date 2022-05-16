@@ -1,6 +1,6 @@
 export default function Component() {
   
-    addCompetitorField = () => {
+    let addCompetitorField = () => {
       let CompetitorsFields = document.getElementById("Competitors-fields")
       var div = document.createElement('div')
       div.innerHTML = "<div>"+
