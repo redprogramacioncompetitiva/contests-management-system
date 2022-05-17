@@ -1,10 +1,10 @@
-import Head from 'next/head'
 import Image from 'next/image'
 import styles from '../styles/Home.module.css'
-import TeamsItem from '../../components/users/TeamsItem'
+import TeamsItem from '../components/users/TeamsItem'
+import CustomHeader from '../components/CustomHeader'
+
 
 import { useSession, signIn, signOut } from "next-auth/react"
-import CustomHeader from '../../components/CustomHeader'
 export default function Component() {
   const { data: session } = useSession()
   console.log(session)

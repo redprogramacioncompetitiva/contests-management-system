@@ -6,7 +6,7 @@ export default class TeamsList extends Component{
     constructor(props){
         super(props)
         this.state = {
-            items : props.teams
+            items : this.props.teams
         }
     }
     render(){
@@ -15,7 +15,7 @@ export default class TeamsList extends Component{
             <div>
                 <div>
                 {this.state.items.map((e)=>
-                <TeamsItem teamName={props.teamName} institution={props.institution} members={this.props.members}  />
+                <TeamsItem teamName={this.props.teamName} institution={this.props.institution} members={this.props.members}  />
                 )}
                 </div>
             </div>
