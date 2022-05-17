@@ -13,7 +13,7 @@ const add = ({ users }) => {
                     <RPCAutocomplete label="Users" data={users} />
                 </div>
                 <div className='col-md-6 mt-4'>
-                    <Button variant='outlined' size='large' fullWidth>
+                    <Button color='primary' variant='contained' size='large' fullWidth>
                         Add
                     </Button>
                 </div>
