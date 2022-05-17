@@ -76,5 +76,16 @@
 }
 
 .homeImg{
-  transform: scale(1,1);
+  object-fit: cover;
+  width: 100%;
+  height: 100vh;
+}
+.button{
+  margin-left: 1rem;
+  margin-bottom: 1.5rem;
+  color:white;
+  background-color: #4A4A4A;
+  width: 1.5rem;
+  height: 1.5rem;
+  border-style: none;
 }

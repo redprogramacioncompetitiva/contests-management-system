@@ -24,9 +24,9 @@ export default function Component() {
           <input className={styles.inputWidth} type="text" placeholder='Nombre del equipo...'></input>
           <h5 className={styles.h5}>¿Quiénes son?</h5>
           <div id="competitors-fields">
-            <input type = 'text' ></input>
-            <button type = 'button' >-</button>
-            <button type = 'button' onMouseDown = {addCompetitorField}>+</button>
+            <input type = 'text'></input>
+            <button type = 'button' className={styles.button} >-</button>
+            <button type = 'button' onMouseDown = {addCompetitorField} className={styles.button}>+</button>
           </div>
           <button className={styles.submitBtn}>Crear equipo</button>
           <br/>
