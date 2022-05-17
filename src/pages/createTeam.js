@@ -8,9 +8,8 @@ export default function Component() {
       div.innerHTML = "<div>"+
                       "<input type = 'text'></input>"+
                       "<button type = 'button'>-</button>"+
-                      "<button type = 'button'>+</button>"+
-                      "</div>"
-      CompetitorsFields.appendChild(div)
+                      "</div>";
+      competitorsFields.appendChild(div)
     }
     return (
     <div>
@@ -25,7 +24,9 @@ export default function Component() {
           <input className={styles.inputWidth} type="text" placeholder='Nombre del equipo...'></input>
           <h5 className={styles.h5}>¿Quiénes son?</h5>
           <div id="competitors-fields">
-
+            <input type = 'text' ></input>
+            <button type = 'button' >-</button>
+            <button type = 'button' onMouseDown = {addCompetitorField}>+</button>
           </div>
           <button className={styles.submitBtn}>Crear equipo</button>
           <br/>
