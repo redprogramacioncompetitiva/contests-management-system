@@ -1,7 +1,9 @@
 import Image from 'next/image'
+
 import styles from '../styles/Home.module.css'
 import TeamsItem from '../components/users/TeamsItem'
 import CustomHeader from '../components/CustomHeader'
+
 
 
 import { useSession, signIn, signOut } from "next-auth/react"
@@ -12,6 +14,7 @@ export default function Component() {
 
 
     return (
+
 
       <div className={styles.container}>
 
@@ -26,9 +29,11 @@ export default function Component() {
           </h1>
 
           <p className={styles.description}>
+
             Get started by editing{' '}
-            <code className={styles.code}>pages/index.js</code>
+            <code>pages/index.js</code>
           </p>
+
 
           <div className={styles.grid}>
             <a href="https://nextjs.org/docs" className={styles.card}>
@@ -37,13 +42,13 @@ export default function Component() {
             </a>
 
             <a href="https://nextjs.org/learn" className={styles.card}>
+
               <h2>Learn &rarr;</h2>
               <p>Learn about Next.js in an interactive course with quizzes!</p>
             </a>
 
             <a
               href="https://github.com/vercel/next.js/tree/canary/examples"
-              className={styles.card}
             >
               <h2>Examples &rarr;</h2>
               <p>Discover and deploy boilerplate example Next.js projects.</p>
@@ -51,7 +56,6 @@ export default function Component() {
 
             <a
               href="https://vercel.com/new?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-              className={styles.card}
             >
               <h2>Deploy &rarr;</h2>
               <p>
@@ -59,17 +63,19 @@ export default function Component() {
               </p>
             </a>
           </div>
+
           <button onClick={() => signOut()} className={styles.card}>Sign out</button>
         </main>
 
         <footer className={styles.footer}>
+
           <a
             href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
             target="_blank"
             rel="noopener noreferrer"
           >
             Powered by{' '}
-            <span className={styles.logo}>
+            <span>
               <Image src="/vercel.svg" alt="Vercel Logo" width={72} height={16} />
             </span>
           </a>
@@ -79,9 +85,11 @@ export default function Component() {
     )
   }
   return (
+
     <div className={styles.main}>
       <h1 className={styles.title}>Not signed in</h1>
       <button onClick={() => signIn()} className={styles.card}>Sign in</button>
+
     </div>
   )
 }
