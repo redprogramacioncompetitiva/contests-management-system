@@ -12,29 +12,39 @@ export default function competitionCreation() {
     const endCompRef = useRef()
     const minRef = useRef()
     const maxRef = useRef()
+    let minDate = null;
+    let min = 0;
 
-
-    let handlesubmit = e => {
+    let handlesubmit = async e => {
         e.preventDefault();
-        //console.log(typeof endCompRef.current.value)
-        //console.log(new Date(endCompRef.current.value).toLocaleString())
-        let competition = {
+     
+        let data = {
             name: nameRef.current.value,
             description: descRef.current.value,
-            startInscriptionDate: new Date(startInscRef.current.value).toLocaleString(),
-            endInscriptionDate: new Date(endInscRef.current.value).toLocaleString(),
-            startDate: new Date(startCompRef.current.value).toLocaleString(),
-            endDate: new Date(endCompRef.current.value).toLocaleString(),
+            startInscriptionDate: startInscRef.current.value,
+            endInscriptionDate: endInscRef.current.value,
+            startDate: startCompRef.current.value,
+            endDate: endCompRef.current.value,
             minMembers: minRef.current.value,
             maxMembers: maxRef.current.value
         }
 
-        //La variable competencia es lo que le dariamos al al back para que se suba a la db
 
-        //console.log(competition)
-        //console.log(competition.endDate.toLocaleString().replace("T", ' '))
-        //console.log(typeof (competition.endDate))
-        //console.log(competition.endDate.toLocaleDateString())
+        const response = await fetch('http://localhost:3000/api/competition/create', {    
+            method: 'POST',
+            body: JSON.stringify({ data }),
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            }
+        })
+
+        const responseData = await response.json();
+
+        if(responseData.success){
+            //window.location.href = '/'
+        }
+  
     }
 
 
@@ -44,35 +54,35 @@ export default function competitionCreation() {
         <form onSubmit={handlesubmit} className='form-container'>
             <div>
                 <label>Nombre de la competencia</label>
-                <input type="text" ref={nameRef}></input>
+                <input type="text" ref={nameRef} required></input>
             </div>
             <div>
                 <label>Descripción de la competencia</label>
-                <textarea ref={descRef}></textarea>
+                <textarea ref={descRef} required></textarea>
             </div>
             <div>
                 <label>Cuando empiezan las inscripciones a la competencia</label>
-                <input type="datetime-local" ref={startInscRef}></input>
+                <input type="datetime-local" ref={startInscRef} required></input>
             </div>
             <div>
                 <label>Cuando termina las inscripciones a la competencia</label>
-                <input type="datetime-local" ref={endInscRef}></input>
+                <input type="datetime-local"  ref={endInscRef} required></input>
             </div>
             <div>
                 <label>Cuando empieza la competencia</label>
-                <input type="datetime-local" ref={startCompRef}></input>
+                <input type="datetime-local" ref={startCompRef} required></input>
             </div>
             <div>
                 <label>Cuando termina la competencia</label>
-                <input type="datetime-local" ref={endCompRef}></input>
+                <input type="datetime-local" ref={endCompRef} required></input>
             </div>
             <div>
                 <label>Cantidad minima de miembros del equipo</label>
-                <input type="number" min="1" ref={minRef}></input>
+                <input type="number" min="1" ref={minRef} name = "minRef" required></input>
             </div>
             <div>
                 <label>Cantidad maxima de miembros del equipo</label>
-                <input type="number" min="1" ref={maxRef}></input>
+                <input type="number" min="1" ref={maxRef} required></input>
             </div>
             <input type="submit" value="Crear"></input>
         </form>
