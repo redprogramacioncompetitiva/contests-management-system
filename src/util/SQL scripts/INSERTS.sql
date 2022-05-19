@@ -1,3 +1,4 @@
+
 INSERT INTO CITY VALUES('CO120', 'Cali');
 INSERT INTO CITY VALUES('AR090', 'Buenos Aires');
 INSERT INTO CITY VALUES('CO023', 'Bogota');
@@ -105,11 +106,13 @@ INSERT INTO TEAM VALUES('HRT75321', 'Wuasap', 00000010);
 
 
 
+
 INSERT INTO STATUS VALUES('1','Iniciada','La competencia ha sido iniciada');
 INSERT INTO STATUS VALUES('2','Finalizada','La competencia ha sido finalizada');
 INSERT INTO STATUS VALUES('3','En Proceso','La competencia está en proceso de realización');
 INSERT INTO STATUS VALUES('4','Cancelada','La competencia ha sido cancelada');
 INSERT INTO STATUS VALUES('5','Aplazada','La competencia ha sido aplazada por algún inconveniente');
+
 
 
 INSERT INTO COMPETITION (NAME, DESCRIPTION,START_INSCRIPTION, END_INSCRIPTION, START_DATE, END_DATE,TEAM_MEMBERS_MIN, TEAM_MEMBERS_MAX) VALUES('competición java','calificar las habilidades en java de los equipos',TO_TIMESTAMP(
