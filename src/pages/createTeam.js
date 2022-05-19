@@ -1,16 +1,10 @@
-import { Component } from "react"
+import MemberField from '../components/teamsComponents/memberField'
 import styles from '../styles/createTeam.module.css'
 
 export default function Component() {
   
     let addCompetitorField = () => {
-      let CompetitorsFields = document.getElementById("Competitors-fields")
-      var div = document.createElement('div')
-      div.innerHTML = "<div>"+
-                      "<input type = 'text'></input>"+
-                      "<button type = 'button'>-</button>"+
-                      "</div>";
-      competitorsFields.appendChild(div)
+          
     }
     return (
     <div>
@@ -25,9 +19,9 @@ export default function Component() {
           <input className={styles.inputWidth} type="text" placeholder='Nombre del equipo...'></input>
           <h5 className={styles.h5}>¿Quiénes son?</h5>
           <div id="competitors-fields">
-            <input type = 'text'></input>
-            <button type = 'button' className={styles.button} >-</button>
-            <button type = 'button' onMouseDown = {addCompetitorField} className={styles.button}>+</button>
+            <MemberField title = "soy un titulo">
+              soy lo que está dentro
+            </MemberField>
           </div>
           <button className={styles.submitBtn}>Crear equipo</button>
           <br/>
