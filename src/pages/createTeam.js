@@ -1,12 +1,11 @@
+import { Component } from "react"
+
 export default function Component() {
   
     let addCompetitorField = () => {
       var competitorsFields = document.getElementById("competitors-fields");
       var div = document.createElement('div');
-      div.innerHTML = "<div>"+
-                      "<input type = 'text'></input>"+
-                      "<button type = 'button'>-</button>"+
-                      "</div>";
+      
       competitorsFields.appendChild(div)
     }
     return (
