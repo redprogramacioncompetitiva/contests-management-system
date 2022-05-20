@@ -41,7 +41,7 @@ export default nextAuth({
                   token.id = user.id,
                   token.email = user.email,
                   token.name = user.name,
-                  token.roll = user.roll
+                  token.roll = user.role
               }
               return token
           },
@@ -50,7 +50,7 @@ export default nextAuth({
                   session.id = token.id,
                   session.name = token.name,
                   session.email = token.email,
-                  session.roll = token.roll
+                  session.roll = token.role
               }
               return session
           }

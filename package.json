@@ -9,7 +9,19 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "create": "^0.0.2",
+    "create-next-app": "^12.1.6",
+
+    "@emotion/cache": "^11.7.1",
+    "@emotion/react": "^11.9.0",
+    "@emotion/server": "^11.4.0",
+    "@emotion/styled": "^11.8.1",
+    "@fontsource/roboto": "^4.5.7",
+    "@mui/material": "^5.7.0",
+    "i": "^0.3.7",
+
     "next": "12.1.6",
+    "next-app": "^0.0.0",
     "next-auth": "^4.3.4",
     "pg": "^8.7.3",
     "react": "18.1.0",

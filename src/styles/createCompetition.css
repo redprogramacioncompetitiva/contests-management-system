@@ -1,0 +1,21 @@
+.container-competition {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-content: center;
+    align-items: center;
+}
+
+.form-container {
+    min-width: 70vw;
+    border: 1px solid black;
+    padding: 1em;
+    border-radius: .5em;
+}
+
+.form-container div {
+    margin: .5em;
+    min-width: 70vw;
+    display: flex;
+    justify-content: space-between;
+}
