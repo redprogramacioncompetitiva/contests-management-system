@@ -1,4 +1,4 @@
-import Header from "../components/Header";
+import CustomHeader from "../components/CustomHeader";
 import styles from "../styles/Home.module.css";
 
 let state = {
@@ -47,9 +47,9 @@ let handleSubmit = async e => {
 export default function register(req, res) {
     return (
         <div>
-            <Header title="Registrar"></Header>
+            <CustomHeader title = "Registrarse" content = "Pagina para registrarse"></CustomHeader>
             <section>
-                <div className={styles.mainContainer}>
+                <div className={styles.main}>
                     <div className="card" style={{ width: "30rem", height: "30rem", marginTop: "195px" }}>
                         <div className="card-body">
                             <h5 className="card-title">Registro</h5>
