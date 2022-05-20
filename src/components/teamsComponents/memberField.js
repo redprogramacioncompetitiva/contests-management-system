@@ -18,11 +18,14 @@ export default class extends Component{
     }
 
     handleAdd = (e) =>{
-        let aux = this.state.members
-        aux.push("")
-        this.setState({
-            members : aux
-        })
+        if(e.target.name.length !== 0){
+            let aux = this.state.members
+            aux.push("")
+            this.setState({
+                members : aux
+            })
+            e.target.disabled = true
+        } 
     }
 
     handleChanged = (e) =>{
@@ -32,7 +35,6 @@ export default class extends Component{
         this.setState({
             members : aux
         })
-        console.log(this.props.children)
     }
 
     render(){
@@ -41,7 +43,7 @@ export default class extends Component{
             {this.state.members.map((e)=><div>
             <input type = 'text' onChange={this.handleChanged} name = {e} value = {e}></input>
             <button type = 'button' name = {e} onClick ={this.handleDelete} className={styles.button}>-</button>
-            <button type = 'button' onClick={this.handleAdd} className={styles.button}>+</button>
+            <button type = 'button' disabled = {false} name = {e} onClick={this.handleAdd} className={styles.button}>+</button>
             </div>)}
         </div>)
     }
