@@ -18,14 +18,21 @@ export default class extends Component{
     }
 
     handleAdd = (e) =>{
-        if(e.target.name.length !== 0){
-            let aux = this.state.members
-            aux.push("")
-            this.setState({
-                members : aux
-            })
-            e.target.disabled = true
-        } 
+        let value = e.target.name
+        let empty = value.slice(0,1)
+        if(empty !== " "){
+            empty = value.slice(value.length-1,value.length)
+            if(empty !== " "){
+                if(value.length !== 0){
+                    let aux = this.state.members
+                    aux.push("")
+                    this.setState({
+                        members : aux
+                    })
+                    e.target.disabled = true
+                }
+            } 
+        }
     }
 
     handleChanged = (e) =>{
