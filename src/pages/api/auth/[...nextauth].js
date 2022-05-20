@@ -55,6 +55,9 @@ export default nextAuth({
               return session
           }
       },
+      pages:{
+        signIn: "/signIn"
+      },
       secret:"pi1_Test",
       jwt:{
           secret: "pi1_Test",
