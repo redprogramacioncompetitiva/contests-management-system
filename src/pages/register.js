@@ -56,8 +56,8 @@ export default function Register(req, res) {
         }
     }
 
-    const message = "Ha ocurrido un error";
-    const type = "error";
+    let message = "Ha ocurrido un error";
+    let type = "error";
 
     let handleSubmit = async e => {
 
@@ -73,9 +73,7 @@ export default function Register(req, res) {
 
         let response = await fetch("http://localhost:3000/api/user/register", object);
 
-        const result = response.json();
-
-        console.log(result.result+" sadhja");
+        const result = await response.json();
 
         if (result.result === "Insert"){
             window.location.href = "http://localhost:3000/index";
@@ -98,8 +96,9 @@ export default function Register(req, res) {
             message = "La contraseña no cumple con los requerimientos";
             type = "error";
         }
-        
-        setOpen(true);
+
+        console.log(message+" "+type);
+        await setOpen(true);
     }
 
     return (
@@ -144,7 +143,7 @@ export default function Register(req, res) {
 
                                 <Stack spacing={2} sx={{ width: '100%' }}>
                                     <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
-                                        <Alert onClose={handleClose} severity={type} sx={{ width: '100%' }}>
+                                        <Alert id="alert" onClose={handleClose} severity={type} sx={{ width: '100%' }}>
                                             {message}
                                         </Alert>
                                     </Snackbar>

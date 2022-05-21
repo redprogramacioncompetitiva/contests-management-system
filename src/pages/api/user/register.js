@@ -6,13 +6,13 @@ export default async function register(req, res) {
 
     if (method === "POST") {
 
-        body.userName = body.userName.trim();
-        body.email = body.email.trim();
-        body.name = body.name.trim();
-        body.lastName = body.lastName.trim();
+        body.userName = await body.userName.trim();
+        body.email = await body.email.trim();
+        body.name = await body.name.trim();
+        body.lastName = await body.lastName.trim();
 
-        let checkSpaces = body.userName.indexOf(" ");
-        let checkMiddleSpaces = (body.userName != "" && checkSpaces < 0 && body.email != "" && body.name != "" && body.lastName != "")
+        let checkSpaces = await body.userName.indexOf(" ");
+        let checkMiddleSpaces = (body.userName != "" && checkSpaces < 0 && body.email != "" && body.name != "" && body.lastName != "");
 
         let pwIsEqual = (body.password == body.confPassword);
 
@@ -37,11 +37,11 @@ export default async function register(req, res) {
             }
         }
 
-        let pwValidations = pwIsEqual && pwHasMinLength && pwHasUpperCase && pwHasLowerCase && pwHasNumber && pwHasSpecialCharacter
+        let pwValidations = (pwIsEqual && pwHasMinLength && pwHasUpperCase && pwHasLowerCase && pwHasNumber && pwHasSpecialCharacter);
 
         if (checkMiddleSpaces && pwValidations) {
-            let response = await db.query('SELECT USERNAME FROM USERS WHERE USERNAME = $1', [req.body.userName])
-            console.log(response.rows)
+
+            let response = await db.query('SELECT USERNAME FROM USERS WHERE USERNAME = $1', [req.body.userName]);
 
             let db1 = response.rows;
 
@@ -49,12 +49,9 @@ export default async function register(req, res) {
 
             if (db1[0] === null) {
                 exit = true
-            } else{
-                console.log("maluco");
             }
             if (exit) {
                 let pw = await bcrypt.hash(req.body.password, 10)
-                console.log(pw)
 
                 try {
                     await db.query('INSERT INTO USERS VALUES($1,$2,$3,$4,$5,$6)', [body.userName, pw, body.email, body.name, body.lastName, 4])
@@ -64,7 +61,7 @@ export default async function register(req, res) {
                     console.log(error)
                 }
             } else {
-                res.status(400).json({ result: "UserNameNotUnique" }); 
+                res.status(400).json({ result: "UserNameNotUnique" });
             }
         } else {
             if (!pwIsEqual) {
