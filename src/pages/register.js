@@ -1,5 +1,10 @@
 import CustomHeader from "../components/CustomHeader";
 import styles from "../styles/Home.module.css";
+import Image from "next/image";
+import myrpc from "/public/img/lgo_rpc.png";
+import * as React from 'react';
+import Button from '@mui/material/Button';
+import SendIcon from "@mui/icons-material/ArrowForward";
 
 let state = {
     userName: "",
@@ -46,45 +51,54 @@ let handleSubmit = async e => {
 
 export default function register(req, res) {
     return (
-        <div>
-            <CustomHeader title = "Registrarse" content = "Pagina para registrarse"></CustomHeader>
+        <div className={styles.mainContainer}>
+            <CustomHeader title="Registrarse" content="Pagina para registrarse"></CustomHeader>
             <section>
-                <div className={styles.main}>
-                    <div className="card" style={{ width: "30rem", height: "30rem", marginTop: "195px" }}>
-                        <div className="card-body">
-                            <h5 className="card-title">Registro</h5>
-                            <label>¿Ya perteneces a la RPC?</label>
-                            
-                            <a href="https://redprogramacioncompetitiva.com/" className="link-primary">&nbsp;Iniciar sesión</a>
+                <div>
+                    <div className={styles.registerContainer}>
+                        <div>
+                            <h5 className={styles.title}>Registro</h5>
+                            <label className={styles.subtitle}>¿Ya perteneces a la RPC?</label>
+
+                            <a href="https://redprogramacioncompetitiva.com/" className={styles.link}>Iniciar sesión</a>
                             <form onSubmit={handleSubmit} onChange={handleChange}>
                                 <div className="mb-3">
-                                    <input name="userName" className="form-control"  placeholder="Nombre de usuario*" required />
-                                </div>
-                                <div className="mb-3">
-                                    <input name="name" className="form-control" placeholder="Nombre*" required />
+                                    <input name="userName" className={styles.inputContainer} placeholder="Nombre de usuario*" required />
                                 </div>
 
+                                <section className={styles.inputAlignment}>
+                                    <div className="mb-3">
+                                        <input name="name" className={styles.inputContainer} placeholder="Nombre*" required />
+                                    </div>
+
+                                    <div className="mb-3">
+                                        <input name="lastName" className={styles.inputContainer} placeholder="Apellido*" required />
+                                    </div>
+                                </section>
+
                                 <div className="mb-3">
-                                    <input name="lastName" className="form-control" placeholder="Apellido*" required />
-                                </div>
-                                <div className="mb-3">
-                                    <input name="email" type="email" className="form-control" placeholder="Email*" required />
-                                </div>
-                                <div className="mb-3">
-                                    <input name="password" type="password" className="form-control" placeholder="Contraseña*" required />
-                                </div>
-                                <div className="mb-3">
-                                    <input name="confPassword" type="password" className="form-control" placeholder="Confirmar contraseña*" required />
+                                    <input name="email" type="email" className={styles.inputContainer} placeholder="Email*" required />
                                 </div>
 
-                                <button type="submit" className="btn btn-primary" style={{ marginRight: "50px" }}>Registrarse</button>
+                                <section className={styles.inputAlignment}>
+                                    <div className="mb-3">
+                                        <input name="password" type="password" className={styles.inputContainer} placeholder="Contraseña*" required />
+                                    </div>
+                                    <div className="mb-3">
+                                        <input name="confPassword" type="password" className={styles.inputContainer} placeholder="Confirmar contraseña*" required />
+                                    </div>
+                                </section>
+                                <Button type="submit" className={styles.button} variant="contained" endIcon={<SendIcon style={{fontSize: "30px", marginLeft: "10px"}}/>}>Registrarse</Button>
+                                
                             </form>
                         </div>
                     </div>
                 </div>
             </section>
-            <section>
-
+            <section className={styles.imgContainer}>
+                <span>
+                    <Image src={myrpc} alt="RPC logo" />
+                </span>
             </section>
         </div>
     )
