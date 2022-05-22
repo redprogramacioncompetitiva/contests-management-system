@@ -45,12 +45,7 @@ export default async function register(req, res) {
 
             let db1 = response.rows;
 
-            var exit = false
-
             if (db1[0] === null) {
-                exit = true
-            }
-            if (exit) {
                 let pw = await bcrypt.hash(req.body.password, 10)
 
                 try {
