@@ -1,5 +1,6 @@
 import MemberField from '../components/teamsComponents/memberField'
 import styles from '../styles/createTeam.module.css'
+import CustomHeader from '../components/CustomHeader'
 
 export default function Component() {
   
@@ -8,7 +9,11 @@ export default function Component() {
     }
     return (
     <div>
+      
+      <CustomHeader></CustomHeader>
+
       <div className={styles.row}>
+
         <div className={styles.column + ' ' + styles.widthX}>
           <h1 className={styles.h1}>Crea un nuevo equipo</h1>
           <h3 className={styles.h3}>Vive nuevas experiencias</h3>
