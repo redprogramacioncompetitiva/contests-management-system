@@ -28,7 +28,7 @@ export default function Component() {
           <button className={styles.cancelBtn}>Cancelar</button>
         </div>
         <div className={styles.column}>
-          <img src='images/teamsImg.jpg' className={styles.homeImg} alt="Picture"></img>
+          <img src='img/teamsImg.jpg' className={styles.homeImg} alt="Picture"></img>
         </div>
       </div>
     </div>
