@@ -42,6 +42,7 @@ export default function competitionCreation() {
         const responseData = await response.json();
 
         if(responseData.success){
+            console.log("Competicion agregada")
             //window.location.href = '/'
         }
   
