@@ -14,6 +14,7 @@ export default async function handler(req,res){
     const comps = await db.query('SELECT * FROM COMPETITION')
     for (let index = 0; index < comps.rows.length; index++) {
         var venues = await db.query('SELECT VENUE_NAME FROM VENUE WHERE ID_VENUE IN(SELECT ID_VENUE FROM VENUE_COMPETITION WHERE ID_COMPETITION = $1)',[comps.rows[index].id_competition])
+        var status = await db.query('SELECT STATUS_NAME FROM STATUS WHERE ID_STATUS = $1',[comps.rows[index].id_status])
         var newComp = new CompetitionPreview(comps.rows[index].id_competition,
             comps.rows[index].name,
             comps.rows[index].description,
@@ -23,8 +24,8 @@ export default async function handler(req,res){
             comps.rows[index].end_date,
             comps.rows[index].team_members_max,
             comps.rows[index].team_members_min,
-            comps.rows[index].status,
-            venues
+            status.rows[0],
+            venues.rows
             )
         competitions.push(newComp)
     }
