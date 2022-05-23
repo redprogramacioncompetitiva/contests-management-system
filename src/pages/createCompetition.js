@@ -19,8 +19,8 @@ export default function competitionCreation() {
         e.preventDefault();
      
         let data = {
-            name: nameRef.current.value,
-            description: descRef.current.value,
+            name: "'" + nameRef.current.value + "'",
+            description: "'" + descRef.current.value + "'",
             startInscriptionDate: startInscRef.current.value,
             endInscriptionDate: endInscRef.current.value,
             startDate: startCompRef.current.value,

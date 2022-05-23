@@ -4,7 +4,7 @@ export default async function handler(req, res) {
     
     const { method, body } = req;
     const data = body.data;
-    const type = '6'
+    const type = "'3'"
 
     if (method === 'POST') {
 
@@ -27,10 +27,9 @@ export default async function handler(req, res) {
         }else{
 
             let date = dateFormat(data)
-
-            /*let insert = await db.query('INSERT INTO COMPETITION(NAME,DESCRIPTION,START_INSCRIPTION,END_INSCRIPTION,START_DATE,END_DATE,TEAM_MEMBERS_MIN,TEAM_MEMBERS_MAX) ' +
-                                        'VALUES($1,$2,TO_TIMESTAMP($3),TO_TIMESTAMP($4),TO_TIMESTAMP($5),TO_TIMESTAMP($6),$7,$8,$9)',
-                                        [data.name, data.description, date[0], date[1], date[2], date[3], data.minMembers, data.maxMembers, type]);*/     
+           
+            let insert = await db.query('INSERT INTO COMPETITION(NAME,DESCRIPTION,START_INSCRIPTION,END_INSCRIPTION,START_DATE,END_DATE,TEAM_MEMBERS_MIN,TEAM_MEMBERS_MAX,ID_STATUS) ' +
+            'VALUES('+ data.name + ',' + data.description  + ',TO_TIMESTAMP('+ date[0] +'),TO_TIMESTAMP('+ date[1] +'),TO_TIMESTAMP('+ date[2] +'),TO_TIMESTAMP('+ date[3] +'),' + data.minMembers + ',' + data.maxMembers + ',' + type + ')');   
     
             res.send({
                 success: true,
