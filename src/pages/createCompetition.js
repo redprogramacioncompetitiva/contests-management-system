@@ -12,8 +12,6 @@ export default function competitionCreation() {
     const endCompRef = useRef()
     const minRef = useRef()
     const maxRef = useRef()
-    let minDate = null;
-    let min = 0;
 
     let handlesubmit = async e => {
         e.preventDefault();
