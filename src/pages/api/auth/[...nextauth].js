@@ -19,9 +19,9 @@ export default nextAuth({
             
             console.log(req)
             const User = { id: 1, name: "J Smith", email: "jsmith@example.com", roll: 'a01' }
-            db.connect();
-            let response = await db.query('SELECT * FROM USUARIO WHERE EMAIL = $1 AND PASSWORD = $2',[credentials.email,credentials.password]);
-            db.end();
+            
+            let response = await db.query('SELECT * FROM USER WHERE EMAIL = $1 AND PASSWORD = $2',[credentials.email,credentials.password]);
+            
             const user = response.rows[0];
             console.log("Usuario"+user)
             if (user) {

@@ -1,14 +1,16 @@
-import { Client } from "pg/lib";
+const { Pool } = require('pg')
+
 
 var db;
 
 if (!db){
-    db = new Client({
-        connectionString: process.env.postgres_uri,
-        ssl: {
-          rejectUnauthorized: false
-        }
-      });
+  db = new Pool({
+    host: 'localhost',
+    user: 'postgres',
+    database: 'PI1',
+    password: 'password',
+    port: 5432
+  })
 }
- export default db;
 
+export default db;
