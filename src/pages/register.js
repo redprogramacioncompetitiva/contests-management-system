@@ -22,7 +22,11 @@ const Alert = React.forwardRef(function Alert(props, ref) {
     return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
 });
 
+let message = "Ha ocurrido un error";
+let type = "error";
+
 export default function Register(req, res) {
+
     const [open, setOpen] = React.useState(false);
 
     const handleClose = (event, reason) => {
@@ -56,9 +60,6 @@ export default function Register(req, res) {
         }
     }
 
-    let message = "Ha ocurrido un error";
-    let type = "error";
-
     let handleSubmit = async e => {
 
         e.preventDefault();
@@ -75,30 +76,29 @@ export default function Register(req, res) {
 
         const result = await response.json();
 
-        if (result.result === "Insert"){
+        if (result.result === "Insert") {
             window.location.href = "http://localhost:3000/index";
             message = "¡La cuenta se registró exitosamente!";
             type = "success";
 
-        }else if (result.result === "UserNameNotUnique") {
+        } else if (result.result === "UserNameNotUnique") {
             message = "Ya existe alguien con ese nombre de usuario";
-            type = "error";
+            type = "warning";
 
         } else if (result.result === "PassNotEquals") {
             message = "Las contraseñas ingresadas no coinciden";
-            type = "error";
+            type = "warning";
 
         } else if (result.result === "MiddleSpaces") {
             message = "El nombre de usuario no puede tener espacios ni pueden existir campos vacíos";
-            type = "error";
+            type = "warning";
 
-        }else if (result.result === "PassNotValidate") {
+        } else if (result.result === "PassNotValidate") {
             message = "La contraseña no cumple con los requerimientos";
-            type = "error";
+            type = "warning";
         }
 
-        console.log(message+" "+type);
-        await setOpen(true);
+        setOpen(true);
     }
 
     return (

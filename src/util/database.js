@@ -8,7 +8,7 @@ if (!db){
     host: 'localhost',
     user: 'postgres',
     database: 'PI1',
-    password: 'sebas0212',
+    password: 'password',
     port: 5432
   })
 }
