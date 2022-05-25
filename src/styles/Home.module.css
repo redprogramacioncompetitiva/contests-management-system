@@ -181,6 +181,7 @@
 }
 
 .title {
+  font-weight: 800;
   font-size: 42px;
   margin-bottom: 13px;
 }
@@ -203,4 +204,45 @@
 
 .link:active {
   color: #ff8f00;
+}
+
+.span[data-tooltip] {
+  position: relative;
+  border-bottom: 1px dotted #09C;
+  cursor: pointer;
+}
+
+.span[data-tooltip]::before {
+  content: attr(data-tooltip);
+  background-color: rgba(99, 97, 97, 0.75);
+  color: white;
+  -webkit-font-smoothing: antialiased;
+  width: 220px;
+  padding: 10px;
+  height: auto;
+  border-radius: 3px;
+  border-width: 0px;
+  display: none;
+  position: absolute;
+  bottom: 23px;
+  left: calc(100% - 75%);
+  pointer-events: none;
+  z-index: 99;
+}
+
+.span[data-tooltip]::after {
+  content: "";
+  height: 1px;
+  width: 1px;
+  border: 10px solid transparent;
+  border-top-color: rgba(99, 97, 97, 0.75);
+  position: absolute;
+  bottom: 4px;
+  left: 50%;
+  display: none;
+}
+
+.span[data-tooltip]:hover::before,
+.span[data-tooltip]:hover::after {
+  display:block;
 }

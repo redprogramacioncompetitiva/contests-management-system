@@ -82,14 +82,16 @@ export default function register(req, res) {
 
                                 <section className={styles.inputAlignment}>
                                     <div className="mb-3">
-                                        <input name="password" type="password" className={styles.inputContainer} placeholder="Contraseña*" required />
+                                            <span className={styles.span} data-tooltip="Debe contener: mínimo 6 caracteres, al menos una letra mayúscula y una minúscula, un número y un carácter especial ej: . , - , *">
+                                            <input name="password" type="password" className={styles.inputContainer} placeholder="Contraseña*" required />
+                                        </span>
                                     </div>
                                     <div className="mb-3">
                                         <input name="confPassword" type="password" className={styles.inputContainer} placeholder="Confirmar contraseña*" required />
                                     </div>
                                 </section>
-                                <Button type="submit" className={styles.button} variant="contained" endIcon={<SendIcon style={{fontSize: "30px", marginLeft: "10px"}}/>}>Registrarse</Button>
-                                
+                                <Button type="submit" className={styles.button} variant="contained" endIcon={<SendIcon style={{ fontSize: "30px", marginLeft: "10px" }} />}>Registrarse</Button>
+
                             </form>
                         </div>
                     </div>
