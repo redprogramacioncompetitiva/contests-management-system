@@ -1,3 +1,10 @@
+@font-face {
+  font-family: 'Urbanist';
+  src: url('/src/fontFamily/Urbanist.ttf');
+}
+
+/*@import url('https://fonts.googleapis.com/css2?family=Urbanist:wght@400;600&display=swap');*/
+
 .container {
   padding: 0 2rem;
 }
@@ -117,6 +124,7 @@
 }
 
 .inputContainer {
+  font-family:'Urbanist';
   display: block;
   width: 100%;
   height: calc(1.5em + 0.75rem + 2px);
@@ -169,11 +177,13 @@
 }
 
 .button {
+  font-family: 'Urbanist';
+  text-transform: capitalize;
   cursor: pointer;
   background-color: #febc1f;
   border-color: transparent;
   border-radius: 8px;
-  font-size: 21px;
+  font-size: 28px;
   width: 290px;
   height: 52px;
   color: white;
@@ -181,17 +191,22 @@
 }
 
 .title {
+  font-family:'Urbanist';
+  font-weight: bold;
   font-size: 42px;
   margin-bottom: 13px;
 }
 
 .subtitle {
+  font-family:'Urbanist';
+  font-weight: bold;
   font-size: 28px;
   margin-bottom: 46px;
   margin-right: 10px;
 }
 
 .link {
+  font-family:'Urbanist';
   font-size: 28px;
   margin-bottom: 46px;
   text-decoration: revert;
