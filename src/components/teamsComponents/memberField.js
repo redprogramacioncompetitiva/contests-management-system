@@ -23,7 +23,8 @@ export default class MemberField extends Component {
     let length = this.state.members.length;
 
     if (value.length !== 0) {
-      if(!(this.state.members[length-1] === "")){
+      if(this.state.members.every(element => element !== ""
+      )){
         let aux = this.state.members;
         aux.push("");
         for (let i = 0; i < aux.length; i ++){
@@ -43,12 +44,7 @@ export default class MemberField extends Component {
     let index = aux.indexOf(e.target.name);
     aux[index] = e.target.value; 
     
-    
-    
-
     if (aux[index].charAt(0) == ' ') aux[index] = aux[index].replace(" ", "")
-
-
       aux = aux.filter((item,index)=>{
       return aux.indexOf(item) === index;
     })
