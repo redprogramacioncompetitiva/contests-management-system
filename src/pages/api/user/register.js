@@ -1,20 +1,21 @@
 import bcrypt from 'bcrypt'
-import db from '../../util/database'
+import db from '../../../util/database'
 
 export default async function register(req, res) {
     const { method, body } = req;
 
     if (method === "POST") {
-        body.username = body.username.trim();
-        body.email = body.email.trim();
-        body.name = body.name.trim();
-        body.lastname = body.lastname.trim();
 
-        let checkSpaces = body.username.indexOf(" ");
-        let checkMiddleSpaces = body.username != "" && checkSpaces < 0 && body.email != "" && body.name != "" && body.lastname != ""
+        body.userName = await body.userName.trim();
+        body.email = await body.email.trim();
+        body.name = await body.name.trim();
+        body.lastName = await body.lastName.trim();
+
+        let checkSpaces = await body.userName.indexOf(" ");
+        let checkMiddleSpaces = (body.userName != "" && checkSpaces < 0 && body.email != "" && body.name != "" && body.lastName != "");
 
         let pwIsEqual = (body.password == body.confPassword);
-        
+
         let pwHasMinLength = (body.password.length >= 6);
         let pwHasUpperCase = false;
         let pwHasLowerCase = false;
@@ -36,26 +37,42 @@ export default async function register(req, res) {
             }
         }
 
-        let pwValidations = pwIsEqual && pwHasMinLength && pwHasUpperCase && pwHasLowerCase && pwHasNumber && pwHasSpecialCharacter
+        let pwValidations = (pwIsEqual && pwHasMinLength && pwHasUpperCase && pwHasLowerCase && pwHasNumber && pwHasSpecialCharacter);
 
         if (checkMiddleSpaces && pwValidations) {
-            let response = await db.query('SELECT USERNAME FROM USERS WHERE USERNAME = $1', [req.body.username])
-            console.log(response.rows)
+
+            let response = await db.query('SELECT USERNAME FROM USERS WHERE USERNAME = $1', [req.body.userName]);
 
             let db1 = response.rows;
 
             var exit = false
-            if (db1[0] === null) {
+
+            if (db1[0] === undefined) {
                 exit = true
             }
+
             if (exit) {
                 let pw = await bcrypt.hash(req.body.password, 10)
-                console.log(pw)
+
                 try {
-                    await db.query('INSERT INTO USERS VALUES($1,$2,$3,$4,$5,$6)', [body.username, pw, body.email, body.name, body.lastname, 4])
+                    await db.query('INSERT INTO USERS VALUES($1,$2,$3,$4,$5,$6)', [body.userName, pw, body.email, body.name, body.lastName, 4])
+                    res.status(200).json({ result: "Insert" });
+
                 } catch (error) {
                     console.log(error)
                 }
+            } else {
+                res.status(400).json({ result: "UserNameNotUnique" });
+            }
+        } else {
+            if (!pwIsEqual) {
+                res.status(400).json({ result: "PassNotEquals" });
+
+            } else if (!checkMiddleSpaces) {
+                res.status(400).json({ result: "MiddleSpaces" })
+
+            } else if (!pwValidations) {
+                res.status(400).json({ result: "PassNotValidate" })
             }
         }
     } else {
