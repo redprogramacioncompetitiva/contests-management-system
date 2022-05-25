@@ -20,30 +20,39 @@ export default class MemberField extends Component {
 
   handleAdd = (e) => {
     let value = e.target.name;
-    let empty = value.slice(0, 1);
-    if (empty !== " ") {
-      empty = value.slice(value.length - 1, value.length);
-      if (empty !== " ") {
-        if (value.length !== 0) {
-          let aux = this.state.members;
-          aux.push("");
-          this.setState({
-            members: aux,
-          });
-          if (aux.indexOf(value) == aux.length - 2) {
-            e.target.disabled = true;
-          } else {
-            e.target.disabled = false;
-          }
+    let length = this.state.members.length;
+
+    if (value.length !== 0) {
+      if(!(this.state.members[length-1] === "")){
+        let aux = this.state.members;
+        aux.push("");
+        for (let i = 0; i < aux.length; i ++){
+          while (aux[i].charAt(aux[i].length-1) == ' ') 
+          aux[i] = aux[i].substring(0,aux[i].length-1)
         }
-      }
+        this.setState({
+        members: aux,
+        });
+      } 
     }
   };
 
   handleChanged = (e) => {
+    console.log(e)
     let aux = this.state.members;
     let index = aux.indexOf(e.target.name);
-    aux[index] = e.target.value;
+    aux[index] = e.target.value; 
+    
+    
+    
+
+    if (aux[index].charAt(0) == ' ') aux[index] = aux[index].replace(" ", "")
+
+
+      aux = aux.filter((item,index)=>{
+      return aux.indexOf(item) === index;
+    })
+
     this.setState({
       members: aux,
     });
@@ -61,7 +70,6 @@ export default class MemberField extends Component {
         <button
           type="button"
           name={e}
-          disabled={false}
           onClick={this.handleDelete}
           className={styles.button}
         >
@@ -69,7 +77,6 @@ export default class MemberField extends Component {
         </button>
         <button
           type="button"
-          disabled={false}
           name={e}
           onClick={this.handleAdd}
           className={styles.button}
