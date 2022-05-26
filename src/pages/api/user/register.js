@@ -45,13 +45,8 @@ export default async function register(req, res) {
 
             let db1 = response.rows;
 
-            var exit = false
 
             if (db1[0] === undefined) {
-                exit = true
-            }
-
-            if (exit) {
                 let pw = await bcrypt.hash(req.body.password, 10)
 
                 try {
@@ -69,7 +64,12 @@ export default async function register(req, res) {
                 res.status(400).json({ result: "PassNotEquals" });
 
             } else if (!checkMiddleSpaces) {
-                res.status(400).json({ result: "MiddleSpaces" })
+                if(checkSpaces >= 0){
+                    res.status(400).json({ result: "MiddleSpaces" })
+                }else{                    
+                    res.status(400).json({ result: "EmptySpaces" })
+                }
+                
 
             } else if (!pwValidations) {
                 res.status(400).json({ result: "PassNotValidate" })

@@ -77,7 +77,7 @@ export default function Register(req, res) {
         const result = await response.json();
 
         if (result.result === "Insert") {
-            window.location.href = "http://localhost:3000/index";
+            window.location.href = "http://localhost:3000/";
             message = "¡La cuenta se registró exitosamente!";
             type = "success";
 
@@ -90,9 +90,12 @@ export default function Register(req, res) {
             type = "warning";
 
         } else if (result.result === "MiddleSpaces") {
-            message = "El nombre de usuario no puede tener espacios ni pueden existir campos vacíos";
+            message = "El nombre de usuario no puede tener espacios";
             type = "warning";
 
+        }else if(result.result === "EmptySpaces") {
+            message = "No pueden existir campos vacíos";
+            type = "warning";
         } else if (result.result === "PassNotValidate") {
             message = "La contraseña no cumple con los requerimientos";
             type = "warning";
