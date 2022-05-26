@@ -1,7 +1,4 @@
-@font-face {
-  font-family: 'Urbanist';
-  src: url('/src/fontFamily/Urbanist.ttf');
-}
+@import url('https://fonts.googleapis.com/css2?family=Urbanist:wght@400;600&display=swap');
 
 .container {
   padding: 0 2rem;
