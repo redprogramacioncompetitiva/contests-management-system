@@ -122,7 +122,7 @@ export default function Register(req, res) {
 
                                 <section className={styles.inputAlignment}>
                                     <div className="mb-3">
-                                        <input name="name" className={styles.inputContainer} placeholder="Nombre*" required />
+                                        <input name="name" className={styles.inputContainer} placeholder="Nombre*"  required />
                                     </div>
 
                                     <div className="mb-3">
@@ -131,7 +131,7 @@ export default function Register(req, res) {
                                 </section>
 
                                 <div className="mb-3">
-                                    <input name="email" type="email" className={styles.inputContainer} placeholder="Email*" required />
+                                    <input name="email" type="email" className={styles.inputContainer} placeholder="Email*" pattern= "[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*@[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*[.][a-zA-Z]{1,5}" required />
                                 </div>
 
                                 <section className={styles.inputAlignment}>
