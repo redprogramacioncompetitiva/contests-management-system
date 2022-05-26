@@ -5,6 +5,7 @@ export default async function (req, res) {
     const {id} = req.query;
     if (method === "POST") {
         const {userName} = body;
+        console.log(userName);
         const query = 'INSERT INTO USERS_TEAM (USERNAME, ID_TEAM) VALUES ($1, $2) RETURNING *';
         const values = [userName, id];
         try {

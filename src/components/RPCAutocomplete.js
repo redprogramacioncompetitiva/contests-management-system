@@ -6,8 +6,10 @@ const RPCAutocomplete = (props) => {
         <Autocomplete
             disablePortal
             options={props.data}
+            getOptionLabel={(option) => option.userName}
             size='medium'
-            renderInput={(params) => <TextField {...params} variant='outlined'  label={props.label} color={'secondary'}/>}
+            onChange={(_,value) =>( props.handle({ target: { value: value } }))}
+            renderInput={(params) => <TextField {...params} variant='outlined' required label={props.label} color={'secondary'}/>}
         />
     )
 }

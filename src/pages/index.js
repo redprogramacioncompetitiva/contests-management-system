@@ -3,6 +3,7 @@ import Image from 'next/image'
 import styles from '../styles/Home.module.css'
 
 import { useSession, signIn, signOut } from "next-auth/react"
+import { Button } from '@mui/material'
 
 export default function Component() {
   const { data: session } = useSession()
@@ -79,7 +80,7 @@ export default function Component() {
   return (
     <div className={styles.main}>
       <h1 className={styles.title}>Not signed in</h1>
-      <button onClick={() => signIn()} className={styles.card}>Sign in</button>
+      <Button onClick={() => signIn()}>Sign in</Button>
     </div>
   )
 }
