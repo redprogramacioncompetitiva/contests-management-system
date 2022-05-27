@@ -1,4 +1,5 @@
 import { Container } from "@mui/material"
+import { margin } from "@mui/system"
 import { getCsrfToken } from "next-auth/react"
 
 export default function SignIn({ csrfToken }) {
@@ -7,12 +8,13 @@ export default function SignIn({ csrfToken }) {
             <div class="sign-in-view">
                 <div class="main-container">
                     <div class="form-signin-container sign-in-container">
-                        <form action="#">
+                        <form class="sign-in-form" action="#">
                             <h1>Sign in</h1>
                             <span>Use your account</span>
                             <input class="sign-in-input" type="email" placeholder="Email" />
                             <input class="sign-in-input" type="password" placeholder="Password" />
-                            <button>Sign In</button>
+                            <hr/>
+                            <button class="sign-in-button">Sign In</button>
                         </form>
                     </div>
                     <div class="overlay-signin-container">
