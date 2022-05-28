@@ -1,5 +1,7 @@
+@import url("https://fonts.googleapis.com/css2?family=Urbanist:wght@500&display=swap");
+
 .container-competition {
-    /* font-family: 'Urbanist'; */
+    font-family: 'Urbanist', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     display: flex;
     justify-content: center;
     flex-direction: column;
@@ -50,6 +52,19 @@
 
 .right {
     border-radius: 0px 10px 10px 0px
+}
+
+.right::-webkit-input-placeholder {
+    color:rgb(73, 73, 73);
+    font-weight: bold;
+}
+.right:-moz-placeholder {
+    color:rgb(73, 73, 73);
+    font-weight: bold;
+}
+.right:-ms-input-placeholder {
+    color:rgb(73, 73, 73);
+    font-weight: bold;
 }
 
 .create-btn {
