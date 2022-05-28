@@ -1,8 +1,9 @@
 import Head from 'next/head'
 import { useRef } from 'react'
+import Image from 'next/image'
 
 
-export default function competitionCreation() {
+export default function CompetitionCreation() {
 
     const nameRef = useRef()
     const descRef = useRef()
@@ -46,44 +47,51 @@ export default function competitionCreation() {
   
     }
 
+    // const handleFocus = (event) => {
+    //     event.target.type = 'datetime-local'
+    // }
+
+    // const handleBlur = (event) => {
+    //     event.target.type = 'text'
+    // }
+
 
     return <div className='container-competition'>
-            <img src = "/img/RPCLogo.jpeg"></img>
-                <h1>Crear competencia</h1>
+            <Image 
+            src = "/img/RPCLogo.jpeg" 
+            alt="logo"
+            width={270}
+            height={200}
+            />
         <form onSubmit={handlesubmit} className='form-container'>
+            <h1 className="competition-title"><b>Compe</b>titions</h1>
+                <label>Competition Name</label>
             <div>
-                <label>Nombre de la competencia</label>
-                <input type="text" ref={nameRef} required></input>
+                <input type="text" className="form-input name-text"  ref={nameRef} required></input>
             </div>
+            <label>Inscription Dates</label>
             <div>
-                <label>Descripción de la competencia</label>
-                <textarea ref={descRef} required></textarea>
+                <input type="datetime-local" className="form-input" ref={startInscRef} required></input>
+                <input type="datetime-local" className="form-input right"  ref={endInscRef} required></input>
             </div>
+
+            <label>Competition Dates</label>
             <div>
-                <label>Cuando empiezan las inscripciones a la competencia</label>
-                <input type="datetime-local" ref={startInscRef} required></input>
+            <input type="datetime-local" className="form-input" ref={startCompRef} /*onFocus={handleFocus} onBlur={handleBlur}*/ required></input>
+            <input type="datetime-local" className="form-input right" ref={endCompRef} required></input>
             </div>
+
+            <label>Team Members</label>
             <div>
-                <label>Cuando termina las inscripciones a la competencia</label>
-                <input type="datetime-local"  ref={endInscRef} required></input>
+                <input type="number" min="1" className="form-input" ref={minRef} name = "minRef" placeholder='Min' required></input>
+                <input type="number" min="1" className="form-input right" ref={maxRef} placeholder='   Max' required></input>
             </div>
+
+            <label>Competition Description</label>
             <div>
-                <label>Cuando empieza la competencia</label>
-                <input type="datetime-local" ref={startCompRef} required></input>
+                <textarea ref={descRef} className="textarea" required></textarea>
             </div>
-            <div>
-                <label>Cuando termina la competencia</label>
-                <input type="datetime-local" ref={endCompRef} required></input>
-            </div>
-            <div>
-                <label>Cantidad minima de miembros del equipo</label>
-                <input type="number" min="1" ref={minRef} name = "minRef" required></input>
-            </div>
-            <div>
-                <label>Cantidad maxima de miembros del equipo</label>
-                <input type="number" min="1" ref={maxRef} required></input>
-            </div>
-            <input type="submit" value="Crear"></input>
+            <input className="create-btn" type="submit" value="Crear"></input>
         </form>
     </div>
 }
