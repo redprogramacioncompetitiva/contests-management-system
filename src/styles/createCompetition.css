@@ -34,7 +34,7 @@
 .form-input {
     flex: 1 1 0;
     /* text-align: center; */
-    border-radius: 10px 0px 0px 10px;
+    border-radius: 2em 0px 0px 2em;
     padding: .7em .8em;
     border: 1px solid rgb(128, 128, 128);
 }
@@ -44,7 +44,7 @@ input[type="number"] {
 }
 
 .name-text {
-    border-radius: 10px 10px 10px 10px;
+    border-radius: 2em;
 }
 
 .textarea {
@@ -55,7 +55,7 @@ input[type="number"] {
 }
 
 .right {
-    border-radius: 0px 10px 10px 0px
+    border-radius: 0px 2em 2em 0px
 }
 
 .right::-webkit-input-placeholder {
