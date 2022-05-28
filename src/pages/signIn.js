@@ -8,11 +8,12 @@ export default function SignIn({ csrfToken }) {
             <div class="sign-in-view">
                 <div class="main-container">
                     <div class="form-signin-container sign-in-container">
-                        <form class="sign-in-form" action="#">
+                        <form class="sign-in-form" action="/api/auth/callback/credentials">
+                            <input name="csrfToken" type="hidden" defaultValue={csrfToken} />
                             <h1>Sign in</h1>
                             <span>Use your account</span>
-                            <input class="sign-in-input" type="email" placeholder="Email" />
-                            <input class="sign-in-input" type="password" placeholder="Password" />
+                            <input class="sign-in-input" type="email" placeholder="Email" name="email"/>
+                            <input class="sign-in-input" type="password" placeholder="Password" name="password"/>
                             <hr/>
                             <button class="sign-in-button">Sign In</button>
                         </form>
