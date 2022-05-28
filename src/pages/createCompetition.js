@@ -84,7 +84,7 @@ export default function CompetitionCreation() {
             <label>Team Members</label>
             <div>
                 <input type="number" min="1" className="form-input" ref={minRef} name = "minRef" placeholder='Min' required></input>
-                <input type="number" min="1" className="form-input right" ref={maxRef} placeholder='   Max' required></input>
+                <input type="number" min="1" className="form-input right" ref={maxRef} placeholder='Max' required></input>
             </div>
 
             <label>Competition Description</label>

@@ -28,7 +28,7 @@
     margin: .5em 0;
     width: 30vw;
     display: flex;
-    overflow: hidden;
+    /* overflow: hidden; */
 }
 
 .form-input {
@@ -37,6 +37,10 @@
     border-radius: 10px 0px 0px 10px;
     padding: .7em .8em;
     border: 1px solid rgb(128, 128, 128);
+}
+
+input[type="number"] {
+    min-width:50px;
 }
 
 .name-text {
