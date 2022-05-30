@@ -7,8 +7,8 @@ if (!db){
   db = new Pool({
     host: 'localhost',
     user: 'postgres',
-    database: 'PI1',
-    password: 'password',
+    database: 'RPC',
+    password: '6986',
     port: 5432
   })
 }

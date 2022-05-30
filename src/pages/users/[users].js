@@ -1,40 +1,70 @@
+import { useSession,signOut } from 'next-auth/react';
+import { useRouter } from 'next/router';
 import CompetitionItem from '../../components/users/CompetitionItem';
+import { Redirect } from "react-router-dom";
+
 
 
 function userIndex({data}){
-  return(
-    <div>
-      Competencias
-      <div>
-      {this.state.items.map((e) => (
-        <CompetitionItem
-          competitionName= {this.props.competitionName}
-          description= {this.props.description}
-          competitionStartDate= {this.props.competitionStartDate}
-          competitionEndDate= {this.props.competitionEndDate}
-          competitionEnrollStartDate= {this.props.competitionEnrollStartDate}
-          competitionEnrollEndDate= {this.props.competitionEnrollEndDate}
-          />
-          ))}
-      </div>
-      
+  
+  const router = useRouter()
+  const { data: session } = useSession()
+  /* state = {
 
-    </div>
-  )
-    
+  } */
+  if(session && session.username == router.query.users){
+    console.log('Amogus')
+    return(
+      <div>
+        Competencias
+        <div>
+        
+        </div>
+        
+  
+      </div>
+    )
+  }else{
+    //return <Redirect to='/'/>;
+    return(
+      <div>
+        <h1>You shall not pass!</h1>
+      </div>
+    )
+  }
+ 
 }
 
+/* export async function getServerSideProps(context) {
+  let config = {
+    method: 'POST',
+    headers: {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json'
+    },
+    body: {user : context.params.users}}
+    console.log(config.body)
+    const testData = await fetch("http://localhost:3000/api/userIndex",config)
+    //console.log(testData)
+    const r = await testData.json()
+
+  return {
+    props: {data : r}, 
+  }
+} */
+
 userIndex.getInitialProps = async (ctx) => {
-    let config = {
+
+     let config = {
       method: 'POST',
       headers: {
         'Accept': 'application/json',
         'Content-Type': 'application/json'
       },
-      //EN EL BODY FALTA EL USERNAME DEL USUARIO
-      body: ''}
+      body:{user: ctx.query.users}}
+      console.log(config.body)
 
-      const testData = await fetch("http://localhost:3000/api/userIndex",config)
+      const testData = await fetch("http://localhost:3000/api/userIndex")
       const r = await testData.json()
       return {data : r}
     
