@@ -1,5 +1,5 @@
 import CompetitionItem from '../../components/users/CompetitionItem';
-import TeamsItem from '../../components/users/TeamsItem';
+
 
 function userIndex({data}){
   return(
@@ -17,12 +17,7 @@ function userIndex({data}){
           />
           ))}
       </div>
-      Equipos
-      <div>
-        {this.state.items.map((e)=>
-         <TeamsItem teamName={this.props.teamName} institution={this.props.institution} members={this.props.members}  />
-        )}
-      </div>
+      
 
     </div>
   )
@@ -41,7 +36,7 @@ userIndex.getInitialProps = async (ctx) => {
 
       const testData = await fetch("http://localhost:3000/api/userIndex",config)
       const r = await testData.json()
-      return {tests : r}
+      return {data : r}
     
   }
 

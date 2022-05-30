@@ -1,8 +1,10 @@
 class Team {
-    constructor(teamId, teamName, members){
+    constructor(teamId, insitution,teamName, members, competitions){
         this.teamId = teamId;
+        this.insitution = insitution;
         this.teamName = teamName;
         this.members = members;
+        this.competitions = competitions;
     }
 }
 

@@ -6,8 +6,8 @@ export default async function handler(req,res){
     var teams = []
     for (let index = 0; index < teamsIds.rows.length; index++) {
         var members = await db.query('SELECT USERNAME FROM USER_TEAM_COMPETITION WHERE ID_TEAM = $1',[teamsIds.rows[index].id_team])
-        var competitions = await db.query('SELECT NAME FROM COMPETITION WHERE ID_COMPETITION IN (SELECT ID_COMPETITION FROM USER_TEAM_COMPETITION WHERE ID_TEAM = $1)',[teamsIds.rows[index].id_team])
-        var team = new Team(teamsIds.rows[index].id_team,teamsIds.rows[index].team_name,members.rows,competitions.rows)
+        var institution = await db.query('SELECT NAME FROM INSTITUTION WHERE ID_INSTITUION = $1',[teamsIds.rows[index].id_institution])
+        var team = new Team(teamsIds.rows[index].id_team, institution.rows[0] ,teamsIds.rows[index].team_name,members.rows)
         teams.push(team)
     }
 
