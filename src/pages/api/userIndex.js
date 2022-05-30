@@ -2,11 +2,12 @@ import {db} from '../../util/database'
 import {Team,CompetitionPreview} from '../../model/classes'
 export default async function handler(req,res){
     const {method , body} = req;
-    const teamsIds = await db.query('SELECT * FROM TEAMS WHERE ID_TEAM IN (SELECT ID_TEAM FROM USERS_TEAM WHERE USERNAME = $1)',[body.username])
+    const teamsIds = await db.query('SELECT * FROM TEAM WHERE ID_TEAM IN (SELECT ID_TEAM FROM USER_TEAM_COMPETITION WHERE USERNAME = $1)',[body.username])
     var teams = []
     for (let index = 0; index < teamsIds.rows.length; index++) {
-        var members = await db.query('SELECT USERNAME FROM USERS_TEAM WHERE ID_TEAM = $1',[teamsIds.rows[index].id_team])
-        var team = new Team(teamsIds.rows[index].id_team,teamsIds.rows[index].team_name,members.rows)
+        var members = await db.query('SELECT USERNAME FROM USER_TEAM_COMPETITION WHERE ID_TEAM = $1',[teamsIds.rows[index].id_team])
+        var competitions = await db.query('SELECT NAME FROM COMPETITION WHERE ID_COMPETITION IN (SELECT ID_COMPETITION FROM USER_TEAM_COMPETITION WHERE ID_TEAM = $1)',[teamsIds.rows[index].id_team])
+        var team = new Team(teamsIds.rows[index].id_team,teamsIds.rows[index].team_name,members.rows,competitions.rows)
         teams.push(team)
     }
 
