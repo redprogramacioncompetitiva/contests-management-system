@@ -18,7 +18,16 @@ function userIndex({data}){
       <div>
         Competencias
         <div>
-        
+        {data.competitions.map((e) => (
+        <CompetitionItem
+          competitionName= {e.name}
+          description= {e.description}
+          competitionStartDate= {e.startDate}
+          competitionEndDate= {this.props.competitionEndDate}
+          competitionEnrollStartDate= {this.props.competitionEnrollStartDate}
+          competitionEnrollEndDate= {this.props.competitionEnrollEndDate}
+          />
+          ))}
         </div>
         
   
