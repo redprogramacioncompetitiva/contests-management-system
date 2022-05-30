@@ -23,9 +23,9 @@ function userIndex({data}){
           competitionName= {e.name}
           description= {e.description}
           competitionStartDate= {e.startDate}
-          competitionEndDate= {this.props.competitionEndDate}
-          competitionEnrollStartDate= {this.props.competitionEnrollStartDate}
-          competitionEnrollEndDate= {this.props.competitionEnrollEndDate}
+          competitionEndDate= {e.competitionEndDate}
+          competitionEnrollStartDate= {e.competitionEnrollStartDate}
+          competitionEnrollEndDate= {e.competitionEnrollEndDate}
           />
           ))}
         </div>
