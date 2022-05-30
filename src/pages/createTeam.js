@@ -1,43 +1,45 @@
+/* eslint-disable @next/next/no-img-element */
+import MemberField from "../components/teamsComponents/memberField";
+import styles from "../styles/createTeam.module.css";
+import CustomHeader from "../components/CustomHeader";
+
 export default function Component() {
-
-    let FIELDSAMOUNT = 0;
-
-    let addCompetitorField = () => {
-      var competitorsFields = document.getElementById("competitors-fields");
-      var div = document.createElement('div');
-      div.innerHTML = "<div id = 'field-"+(FIELDSAMOUNT+1)+"\'>"+
-                      "<input type = 'text'></input>"+
-                      "<button type = 'button'>-</button>"+
-                      "</div>";
-      competitorsFields.appendChild(div)
-      FIELDSAMOUNT++;
-    }
-
-    return (
+  let addCompetitorField = () => {};
+  return (
     <div>
-      <div className="row">
-        <div className="column">
-          <h1>Crea un nuevo equipo</h1>
-          <h3>Vive nuevas experiencias</h3>
-          <br/>
-          <hr></hr>
-          <br/>
-          <h5>¿Cómo se llaman?</h5>
-          <input type="text"></input>
-          <h5>¿Quiénes son?</h5>
+      <CustomHeader></CustomHeader>
+
+      <div className={styles.row}>
+        <div className={styles.column + " " + styles.widthX}>
+          <h1 className={styles.h1}>Crea un nuevo equipo</h1>
+          <h3 className={styles.h3}>Vive nuevas experiencias</h3>
+          <br />
+          <hr className={styles.hr}></hr>
+          <br />
+          <h5 className={styles.h5}>¿Cómo se llaman?</h5>
+          <input
+            className={styles.inputWidth}
+            type="text"
+            placeholder="Nombre del equipo..."
+          ></input>
+          <h5 className={styles.h5}>¿Quiénes son?</h5>
           <div id="competitors-fields">
-            <input type = 'text' ></input>
-            <button type = 'button' onMouseDown = {addCompetitorField}>+</button>
-            <button type = 'button'>-</button>
+            <MemberField title="soy un titulo">
+              soy lo que está dentro
+            </MemberField>
           </div>
-          <button>Crear equipo</button>
-          <br/>
-          <button>Cancelar</button>
+          <button className={styles.submitBtn}>Crear equipo</button>
+          <br />
+          <button className={styles.cancelBtn}>Cancelar</button>
         </div>
-        <div className="column">
-          <img alt="Picture"></img>
+        <div className={styles.column}>
+          <img
+            src="img/teamsImg.jpg"
+            className={styles.homeImg}
+            alt="Picture"
+          ></img>
         </div>
       </div>
     </div>
-    )
+  );
 }
