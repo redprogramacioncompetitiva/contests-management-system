@@ -1,13 +1,14 @@
-import {db} from "../../../util/database";
+import db from "../../../util/database";
 
-export default async function (req, res) {
+export default async function teamInsert(req, res) {
     
     const {method, body} = req;
     const {id} = req.query;
+    console.log("shi")
     if (method === "POST") {
-        const {userName} = body;
-        const query = 'INSERT INTO USERS_TEAM (USERNAME, ID_TEAM) VALUES ($1, $2) RETURNING *';
-        const values = [userName, id];
+        const {teamName} = body;
+        const query = 'INSERT INTO TEAM (TEAM_NAME) VALUES ($1) RETURNING ID_TEAM';
+        const values = [id, teamName];
         try {
             const response = await db.query(query, values);
             return res.status(200).json(response.rows[0]);

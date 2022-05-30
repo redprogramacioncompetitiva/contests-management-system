@@ -4,7 +4,7 @@ import styles from "../../styles/createTeam.module.css";
 export default class MemberField extends Component {
   constructor(props) {
     super(props);
-    this.state = { members: [""] };
+    this.state = { members: [""], teamName: "" };
   }
 
   handleDelete = (e) => {
@@ -21,7 +21,7 @@ export default class MemberField extends Component {
   handleAdd = (e) => {
     let value = e.target.name;
     let length = this.state.members.length;
-
+    
     if (value.length !== 0) {
       if(this.state.members.every(element => element !== ""
       )){
@@ -38,8 +38,47 @@ export default class MemberField extends Component {
     }
   };
 
+  handleSubmit = async (e) =>{
+
+    let config1 = {
+      method: 'POST',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(this.state.teamName)
+    }
+    await fetch('http://localhost:3000/api/team/teamInsert',config1);
+
+    /*
+    let config = {
+      method: 'POST',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(this.state.members)
+    }
+
+    let r = await fetch('http://localhost:3000/api/team/[id]',config);
+    */
+  }
+
+  handleChangedName = (e) => {
+    
+    let aux = this.state.name;
+    aux = e.target.value; 
+    
+    if (aux.charAt(0) == ' ') aux = aux.replace(" ", "")
+
+    this.setState({
+      teamName: aux,
+    });
+
+  };
+
   handleChanged = (e) => {
-    console.log(e)
+    
     let aux = this.state.members;
     let index = aux.indexOf(e.target.name);
     aux[index] = e.target.value; 
@@ -56,6 +95,7 @@ export default class MemberField extends Component {
 
   render() {
     const membersList = this.state.members.map((e) => (
+      
       <div key={this.state.members.indexOf(e)}>
         <input
           type="text"
@@ -78,9 +118,29 @@ export default class MemberField extends Component {
           className={styles.button}
         >
           +
-        </button>
+        </button> 
       </div>
     ));
-    return <div>{membersList}</div>;
+
+    return <div>
+      <h5 className={styles.h5}>¿Cómo se llaman?</h5>    
+      <input
+            name = "teamField"
+            onChange={this.handleChangedName}
+            className={styles.inputWidth}
+            type="text"
+            placeholder="Nombre del equipo..."
+      ></input>
+      <h5 className={styles.h5}>¿Quiénes son?</h5>  
+
+      {membersList}
+
+      <button 
+          className={styles.submitBtn}
+          onClick = {this.handleSubmit}
+      >
+            Crear equipo
+      </button>
+    </div>;
   }
 }
