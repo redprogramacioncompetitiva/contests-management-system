@@ -1,6 +1,5 @@
 const { Pool } = require('pg')
 
-
 var db;
 
 if (!db){
