@@ -24,6 +24,10 @@ export default class CompetitionItems extends Component {
                         <li>{this.props.competitionEnrollStartDate}</li>
                         <li>{this.props.competitionEnrollEndDate}</li>
                     </ul>
+                    <ul>
+                        <li>{this.props.competitionStatus}</li>
+                        <li>{this.props.competitionStatus}</li>
+                    </ul>
                     </section>
                 </section>
             </section>
