@@ -15,21 +15,9 @@ export default function Component() {
           <h3 className={styles.h3}>Vive nuevas experiencias</h3>
           <br />
           <hr className={styles.hr}></hr>
-          <br />
-          <h5 className={styles.h5}>¿Cómo se llaman?</h5>
-          <input
-            className={styles.inputWidth}
-            type="text"
-            placeholder="Nombre del equipo..."
-          ></input>
-          <h5 className={styles.h5}>¿Quiénes son?</h5>
           <div id="competitors-fields">
-            <MemberField title="soy un titulo">
-              soy lo que está dentro
-            </MemberField>
+            <MemberField></MemberField>
           </div>
-          <button className={styles.submitBtn}>Crear equipo</button>
-          <br />
           <button className={styles.cancelBtn}>Cancelar</button>
         </div>
         <div className={styles.column}>
