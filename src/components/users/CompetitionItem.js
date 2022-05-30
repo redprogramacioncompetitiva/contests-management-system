@@ -1,5 +1,5 @@
 import { Component } from "react"
-import style from '../../src/styles/G6.module.css'
+import style from '../../styles/G6.module.css'
 
 export default class CompetitionItems extends Component {
 

@@ -8,9 +8,10 @@ class Team {
     }
 }
 
-class CompetitionPreview{
-    constructor(id, name, description, startInscription,endInscription,startDate, endDate, teamMemMax,teamMemMin,status,venues){
+class Competition{
+    constructor(id, name, description, startInscription, endInscription, startDate, endDate, teamMemMax, teamMemMin, status, venues){
         this.id = id;
+        this.name = name;
         this.description = description;
         this.startInscription = startInscription;
         this.endInscription = endInscription;
@@ -23,4 +24,4 @@ class CompetitionPreview{
     }
 }
 
-export default {Team, CompetitionPreview}
+export default {Team, Competition}
