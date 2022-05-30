@@ -1,6 +1,7 @@
 import nextAuth from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
 import db from "../../../util/database";
+import bcrypt from 'bcrypt'
 export default nextAuth({
     providers: [
         CredentialsProvider({
@@ -17,14 +18,18 @@ export default nextAuth({
           async authorize(credentials, req) {
             // Add logic here to look up the user from the credentials supplied
             
-            console.log(req)
-            const User = { id: 1, name: "J Smith", email: "jsmith@example.com", roll: 'a01' }
             
-            let response = await db.query('SELECT * FROM USER WHERE EMAIL = $1 AND PASSWORD = $2',[credentials.email,credentials.password]);
+            
+            //console.log(credentials)
+            console.log(req)
+            
+            let response = await db.query('SELECT * FROM USERS WHERE EMAIL = $1',[credentials.email]);
+            
+            let stats = await bcrypt.compare(credentials.password, response.rows[0].password)
             
             const user = response.rows[0];
-            console.log("Usuario"+user)
-            if (user) {
+            console.log(user)
+            if (user && stats == true) {
               return user
             } else {
               // If you return null then an error will be displayed advising the user to check their details.
@@ -38,19 +43,21 @@ export default nextAuth({
       callbacks: {
           jwt: async({token,user}) =>{
               if (user){
-                  token.id = user.id,
+                  token.username = user.username,
                   token.email = user.email,
                   token.name = user.name,
-                  token.roll = user.role
+                  token.last_name = user.last_name,
+                  token.user_type = user.user_type
               }
               return token
           },
           session: ({session, token}) => {
               if (token){
-                  session.id = token.id,
+                  session.username = token.username,
                   session.name = token.name,
                   session.email = token.email,
-                  session.roll = token.role
+                  session.last_name = token.last_name,
+                  session.user_type = token.user_type
               }
               return session
           }
