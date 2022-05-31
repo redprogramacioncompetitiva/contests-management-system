@@ -76,9 +76,22 @@ export default function Details() {
   var validation = createUser();
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
-  function handleJoin () {
+  const handleJoin = async e => {
+
     if(validationDetail.validationsPassed){
+      var config = {
+        method: 'POST',
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'
+        },
+        body : JSON.stringify(state)
+      }
+      let details = await fetch('http://localhost:3000/api/competition/join',config)
+      let data = await details.json();
+      console.log(data);
       Router.push('/competitions/success_register');
+      
     }else{
       Router.push('/competitions/fail_register')
     }
