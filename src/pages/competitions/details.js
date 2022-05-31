@@ -44,7 +44,12 @@ export default function Details() {
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
   function handleJoin () {
-    Router.push('/competitions/success_register');
+    if () {
+      Router.push('/competitions/success_register');
+    }else {
+      Router.push('/competitions/fail_register');
+    }
+
   }
 
   return (
