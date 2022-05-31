@@ -56,7 +56,7 @@ export default async function handler(req,res){
                 endDate : comps.rows[index].end_date,
                 teamMax: comps.rows[index].team_members_max,
                 teamMin : comps.rows[index].team_members_min,
-                stratus : status.rows[0],
+                status : status.rows[0],
                 venues : venues.rows
             }
             

@@ -4,6 +4,26 @@
   transition: transform 300ms ease-in-out;
   border-radius: 10px;
   padding: 5px;
+  cursor: pointer;
+  margin: 20px 20px 20px 20px;
+
+  color: #FFFD;
+  text-align: center;
+  background-color: #FFAB03;
+}
+
+#competitionContainer{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 10%;
+}
+
+#competitionsEnabled{
+  grid-column: 1;
+}
+
+#competitionsDisabled{
+  grid-column: 2;
 }
 
 .card:hover {
