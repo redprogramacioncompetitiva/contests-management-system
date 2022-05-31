@@ -23,44 +23,28 @@ export default async function handler(req,res){
         teams.push(newTeam)
     }
 
-    var competitions = []
-    const comps = await db.query('SELECT * FROM COMPETITION')
-    for (let index = 0; index < comps.rows.length; index++) {
-        var venues = await db.query('SELECT VENUE_NAME FROM VENUE WHERE ID_VENUE IN(SELECT ID_VENUE FROM VENUE_COMPETITION WHERE ID_COMPETITION = $1)',[comps.rows[index].id_competition])
-        
-        var status = await db.query('SELECT STATUS_NAME FROM STATUS WHERE ID_STATUS = $1',[comps.rows[index].id_status])
-        
-        /*
-        var newComp = new Competition(
-            comps.rows[index].id_competition,
-            comps.rows[index].name,
-            comps.rows[index].description,
-            comps.rows[index].start_inscription,
-            comps.rows[index].end_inscription,
-            comps.rows[index].start_date,
-            comps.rows[index].end_date,
-            comps.rows[index].team_members_max,
-            comps.rows[index].team_members_min,
-            status.rows[0],
-            venues.rows
-            )
-        */
+    var competitionsEnabled = []
+    const compsEnabled = await db.query('SELECT * FROM COMPETITION WHERE ID_STATUS = '6'')
+    for (let index = 0; index < compsEnabled.rows.length; index++) {
+        var venues = await db.query('SELECT VENUE_NAME FROM VENUE WHERE ID_VENUE IN(SELECT ID_VENUE FROM VENUE_COMPETITION WHERE ID_COMPETITION = $1)',[compsEnabled.rows[index].id_competition])
+
+        var status = await db.query('SELECT STATUS_NAME FROM STATUS WHERE ID_STATUS = $1',[compsEnabled.rows[index].id_status]);
 
             var newComp = {
-                id : comps.rows[index].id_competition,
-                name : comps.rows[index].name,
-                description : comps.rows[index].description,
-                startInscription: comps.rows[index].start_inscription,
-                endInscription : comps.rows[index].end_inscription,
-                startDate : comps.rows[index].start_date,
-                endDate : comps.rows[index].end_date,
-                teamMax: comps.rows[index].team_members_max,
-                teamMin : comps.rows[index].team_members_min,
+                id : compsEnabled.rows[index].id_competition,
+                name : compsEnabled.rows[index].name,
+                description : compsEnabled.rows[index].description,
+                startInscription: compsEnabled.rows[index].start_inscription,
+                endInscription : compsEnabled.rows[index].end_inscription,
+                startDate : compsEnabled.rows[index].start_date,
+                endDate : compsEnabled.rows[index].end_date,
+                teamMax: compsEnabled.rows[index].team_members_max,
+                teamMin : compsEnabled.rows[index].team_members_min,
                 status : status.rows[0],
                 venues : venues.rows
             }
-            
-        competitions.push(newComp)
+
+        competitionsEnabled.push(newComp)
     }
 
     const data = {
