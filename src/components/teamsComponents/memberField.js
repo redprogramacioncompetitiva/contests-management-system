@@ -19,6 +19,7 @@ export default class MemberField extends Component {
   };
 
   handleAdd = (e) => {
+    console.log("Agregando campo");
     let value = e.target.name;
     let length = this.state.members.length;
     
@@ -39,17 +40,23 @@ export default class MemberField extends Component {
   };
 
   handleSubmit = async (e) =>{
-
-    let config1 = {
+    let tm = this.state.teamName;
+    /*let config1 = {
       method: 'POST',
       headers: {
         'Accept': 'application/json',
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify(this.state.teamName)
-    }
-    await fetch('http://localhost:3000/api/team/teamInsert',config1);
-
+      body: JSON.stringify({tm})
+    }*/
+    let r = await fetch('http://localhost:3000/api/team/teamInsert',{
+      method: 'POST',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({tm})
+    });
     /*
     let config = {
       method: 'POST',
@@ -65,7 +72,7 @@ export default class MemberField extends Component {
   }
 
   handleChangedName = (e) => {
-    
+    console.log("cambio de nombre");
     let aux = this.state.name;
     aux = e.target.value; 
     
@@ -78,7 +85,6 @@ export default class MemberField extends Component {
   };
 
   handleChanged = (e) => {
-    
     let aux = this.state.members;
     let index = aux.indexOf(e.target.name);
     aux[index] = e.target.value; 

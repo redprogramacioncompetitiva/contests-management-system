@@ -11,5 +11,5 @@ if (!db){
       password: 'ortiz2003'
     })
 }
- export default db;
+ export default {db};
 
