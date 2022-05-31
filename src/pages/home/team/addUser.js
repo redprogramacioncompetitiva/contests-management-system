@@ -16,9 +16,9 @@ const addUser = ({ users }) => {
         e.preventDefault();
         console.log(user);
         //Geeting the team id of current user ⚠️
-        //const {id} = fetch(`api/users/${session.id}`,{method:"GET"}) ❗️
+        const {id} = fetch(`api/users/${session.id}`,{method:"GET"}) 
         //Adding a user to 32 id team example ♻️, Integration replace 32 => id 
-        fetch(`/api/team/${32}`, { method: "POST", headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(user) }).then(res => {
+        fetch(`/api/team/${id}`, { method: "POST", headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(user) }).then(res => {
             Mixim('User: ' + res.name + 'have been added succesfully', 'success')
         }).catch(err => {
             Mixim(err, 'error')
