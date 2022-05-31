@@ -11,8 +11,8 @@ export default function Test(){
             body: JSON.stringify(variables)
         }
         let r= await fetch("http://localhost:3000/api/team/enrollment", config)
-
-       // console.log(r);
+        let data = await r.json()
+       console.log(data);
     }
     createUser()
 }
