@@ -2,7 +2,8 @@ import database from "../../util/database";
 
 export default async function handle(req) {
     
-    var idCompetition = '4';
+    var body = req.body;
+    var idCompetition = body.competitionId;
     
     switch (req.method){
         case "GET": res.statusCode = 404; break;

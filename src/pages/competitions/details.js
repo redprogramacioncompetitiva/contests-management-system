@@ -19,8 +19,28 @@ const style = {
   p: 4,
 };
 
-export default function BasicModal() {
+const state = {
+  competitionId : 4,
+  leaderUserName: "andres123",
+  teamId: 'TM000000'
+}
+
+let getDetails = async e => {
+  var config = {
+    method: 'POST',
+    headers: {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json'
+    },
+    body : JSON.stringify(state)
+  }
+  let details = await fetch('http://localhost:3000/api/selectExample',config) //Change to api/details
+  return details
+}
+
+export default function Details() {
   const [open, setOpen] = React.useState(false);
+  var details = getDetails();
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
   function handleJoin () {
@@ -29,6 +49,16 @@ export default function BasicModal() {
 
   return (
     <div>
+      <div id='information'>
+        <b>Competition Id: </b>
+        <p id='competition-id'>{state.competitionId}</p>
+
+        <b>Leader username: </b>
+        <p id='leader-username'>{state.leaderUserName}</p>
+
+        <b>Team Id: </b>
+        <p id='team-id'>{state.teamId}</p>
+      </div>
       <Button onClick={handleOpen}>Open modal</Button>
       <Modal
         open={open}
