@@ -100,7 +100,7 @@ export default async function handle(req, res){
     }
     
     let validations =(simultaneousCompetition && alreadyInCompetition && competitorsNumber && leaderValidation)
-
+    console.log(simultaneousCompetition, alreadyInCompetition, competitorsNumber, leaderValidation);
     let response = {
         validationsPassed : validations
     }

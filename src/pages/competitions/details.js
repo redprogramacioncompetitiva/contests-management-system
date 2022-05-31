@@ -19,6 +19,12 @@ const style = {
   p: 4,
 };
 
+const test = {
+  idCompetition: 4,
+  idTeam: 'TM000000',
+  username: 'pepito'
+}
+
 const state = {
   competitionId : 1,
   leaderUserName: "andres123",
@@ -44,7 +50,7 @@ const createUser = async () => {
       'Accept' : 'application/json',
       'Content-Type' : 'application/json'
     },
-    body: JSON.stringify(state)
+    body: JSON.stringify(test)
   }
   let r= await fetch("http://localhost:3000/api/team/enrollment", config)
   let data = await r.json()
