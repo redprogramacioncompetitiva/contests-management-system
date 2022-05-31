@@ -23,6 +23,14 @@ const state = {
   teamId: 'TM000000'
 }
 
+const competitionDetails = {
+  name:'',
+  description:'',
+  teamMembersMax:0,
+  institution:'',
+  city:''
+}
+
 let getDetails = async e => {
   var config = {
     method: 'POST',
@@ -33,7 +41,13 @@ let getDetails = async e => {
     body : JSON.stringify(state)
   }
   let details = await fetch('http://localhost:3000/api/selectExample',config) //Change to api/details
-  return details
+  let data = await details.json();
+  console.log(data);
+  competitionDetails.name = data.name;
+  competitionDetails.description = data.description;
+  competitionDetails.teamMembersMax = data.teamMembersMax;
+  competitionDetails.institution = data.institution;
+  competitionDetails.city = data.city;
 }
 
 export default function Details() {
@@ -63,7 +77,7 @@ export default function Details() {
       >
         <Box sx={style}>
           <Typography id="modal-competition-name" variant="h5" component="h2">
-            Competition Name
+            {competitionDetails.name}
           </Typography>
 
           <div id='modal-content'>
@@ -73,7 +87,7 @@ export default function Details() {
             </Typography>
 
             <Typography id="modal-competition-description" sx={{ mt: 2 }}>
-                Duis mollis, est non commodo luctus, nisi erat porttitor ligula.
+                {competitionDetails.description}
             </Typography>
 
             <Typography id="modal-competition-venue-head" sx={{ mt: 2, color: '#8B8B8B' }}>
@@ -81,7 +95,7 @@ export default function Details() {
             </Typography>
 
             <Typography id="modal-competition-venue" sx={{ mt: 2 }}>
-                ICESI, Cali
+                {competitionDetails.institution}, {competitionDetails.city}
             </Typography>
 
             <Typography id="modal-competition-max-members-head" sx={{ mt: 2, color: '#8B8B8B' }}>
@@ -89,7 +103,7 @@ export default function Details() {
             </Typography>
 
             <Typography id="modal-competition-max-members" sx={{ mt: 2 }}>
-                3
+              {competitionDetails.teamMembersMax}
             </Typography>
           </div>
 
