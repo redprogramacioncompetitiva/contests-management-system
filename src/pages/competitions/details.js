@@ -32,6 +32,26 @@ const competitionDetails = {
   institution_city:''
 }
 
+const validationDetail = {
+  validationsPassed: ''
+}
+
+const createUser = async () => {
+
+  let config = {
+    method: 'POST',
+    headers: {
+      'Accept' : 'application/json',
+      'Content-Type' : 'application/json'
+    },
+    body: JSON.stringify(state)
+  }
+  let r= await fetch("http://localhost:3000/api/team/enrollment", config)
+  let data = await r.json()
+  console.log(data);
+  validationDetail.validationsPassed=data.validationsPassed;
+}
+
 let getDetails = async e => {
   var config = {
     method: 'POST',
@@ -53,10 +73,15 @@ let getDetails = async e => {
 export default function Details() {
   const [open, setOpen] = React.useState(false);
   var details = getDetails();
+  var validation = createUser();
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
   function handleJoin () {
-    Router.push('/competitions/success_register');
+    if(validationDetail.validationsPassed){
+      Router.push('/competitions/success_register');
+    }else{
+      Router.push('/competitions/fail_register')
+    }
   }
 
   return (
