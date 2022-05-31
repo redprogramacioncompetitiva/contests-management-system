@@ -48,6 +48,30 @@ export default async function handler(req,res){
         competitionsEnabled.push(newComp)
     }
 
+    var competitionsDisabled = []
+    const compsDisabled = await db.query('SELECT * FROM COMPETITION WHERE ID_STATUS <> \'6\'')
+    for (let index = 0; index < compsDisabled.rows.length; index++) {
+        var venues = await db.query('SELECT VENUE_NAME FROM VENUE WHERE ID_VENUE IN(SELECT ID_VENUE FROM VENUE_COMPETITION WHERE ID_COMPETITION = $1)',[compsDisabled.rows[index].id_competition])
+
+        var status = await db.query('SELECT STATUS_NAME FROM STATUS WHERE ID_STATUS = $1',[compsDisabled.rows[index].id_status]);
+
+            var newComp = {
+                id : compsDisabled.rows[index].id_competition,
+                name : compsDisabled.rows[index].name,
+                description : compsDisabled.rows[index].description,
+                startInscription: compsDisabled.rows[index].start_inscription,
+                endInscription : compsDisabled.rows[index].end_inscription,
+                startDate : compsDisabled.rows[index].start_date,
+                endDate : compsDisabled.rows[index].end_date,
+                teamMax: compsDisabled.rows[index].team_members_max,
+                teamMin : compsDisabled.rows[index].team_members_min,
+                status : status.rows[0],
+                venues : venues.rows
+            }
+
+        competitionsDisabled.push(newComp)
+    }
+
     const data = {
         teams: teams,
         competitions: competitions
