@@ -20,7 +20,7 @@ const style = {
 };
 
 const state = {
-  competitionId : 4,
+  competitionId : 1,
   leaderUserName: "andres123",
   teamId: 'TM000000'
 }
@@ -29,8 +29,7 @@ const competitionDetails = {
   name:'',
   description:'',
   teamMembersMax:0,
-  institution:'',
-  city:''
+  institution_city:''
 }
 
 let getDetails = async e => {
@@ -44,12 +43,11 @@ let getDetails = async e => {
   }
   let details = await fetch('http://localhost:3000/api/details',config)
   let data = await details.json();
-  console.log(data);
+  //console.log(data);
   competitionDetails.name = data.name;
   competitionDetails.description = data.description;
   competitionDetails.teamMembersMax = data.teamMembersMax;
-  competitionDetails.institution = data.institution;
-  competitionDetails.city = data.city;
+  competitionDetails.institution_city = data.institution_city;
 }
 
 export default function Details() {
@@ -96,11 +94,11 @@ export default function Details() {
             </Typography>
 
             <Typography id="modal-competition-venue-head" sx={{ mt: 2, color: '#8B8B8B' }}>
-                Venue
+                Venue/s
             </Typography>
 
             <Typography id="modal-competition-venue" sx={{ mt: 2 }}>
-                {competitionDetails.institution}, {competitionDetails.city}
+                {competitionDetails.institution_city} 
             </Typography>
 
             <Typography id="modal-competition-max-members-head" sx={{ mt: 2, color: '#8B8B8B' }}>

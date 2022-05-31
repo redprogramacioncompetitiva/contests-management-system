@@ -19,30 +19,38 @@ export default async function handle(req,res) {
                 `SELECT ID_VENUE FROM VENUE_COMPETITION
                 WHERE ID_COMPETITION = ${idCompetition};`
             )
+            
+            var auxString = ""
 
-            var idVenue = responseVenueCompetition.rows[0].id_venue;
+            for(var i=0;i<responseVenueCompetition.rows.length;i++) {
+                var idVenue = responseVenueCompetition.rows[i].id_venue;
+                
+                var responseVenue = await database.query(
+                    `SELECT SHORT_NAME, CITY_CODE FROM VENUE
+                    WHERE ID_VENUE = ${idVenue};`
+                )
 
-            var responseVenue = await database.query(
-                `SELECT SHORT_NAME, CITY_CODE FROM VENUE
-                WHERE ID_VENUE = ${idVenue};`
-            )
-
-            var shortName = responseVenue.rows[0].short_name;
-            var cityCode = responseVenue.rows[0].city_code;
-
-            var responseCity = await database.query(
-                `SELECT CITY_NAME, CITY_CODE FROM CITY
-                WHERE CITY_CODE = '${cityCode}';`
-            );
-
-            var cityInfo = responseCity.rows[0]
+                for(var j=0;j<responseVenue.rows.length;j++) {
+                    var shortName = responseVenue.rows[j].short_name;
+                    var cityCode = responseVenue.rows[j].city_code;
+                    
+                    var responseCity = await database.query(
+                        `SELECT CITY_NAME, CITY_CODE FROM CITY
+                        WHERE CITY_CODE = '${cityCode}';`
+                    );
+                    
+                    var cityInfo = responseCity.rows[0]
+        
+                    auxString = auxString + shortName + "," + cityInfo.city_name + "\n"
+                } 
+            }
+            //console.log(auxString)
 
             var details = {
                 name : competitionInfo.name,
                 description : competitionInfo.description,
                 teamMembersMax : competitionInfo.team_members_max,
-                institution : shortName,
-                city : cityInfo.city_name
+                institution_city: auxString
             };
 
             res.send(details)
