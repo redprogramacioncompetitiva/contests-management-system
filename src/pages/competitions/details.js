@@ -20,9 +20,36 @@ const style = {
 };
 
 const state = {
-  competitionId : 4,
+  competitionId : 1,
   leaderUserName: "andres123",
   teamId: 'TM000000'
+}
+
+const competitionDetails = {
+  name:'',
+  description:'',
+  teamMembersMax:0,
+  institution_city:''
+}
+
+const validationDetail = {
+  validationsPassed: ''
+}
+
+const createUser = async () => {
+
+  let config = {
+    method: 'POST',
+    headers: {
+      'Accept' : 'application/json',
+      'Content-Type' : 'application/json'
+    },
+    body: JSON.stringify(state)
+  }
+  let r= await fetch("http://localhost:3000/api/team/enrollment", config)
+  let data = await r.json()
+  console.log(data);
+  validationDetail.validationsPassed=data.validationsPassed;
 }
 
 let getDetails = async e => {
@@ -34,22 +61,27 @@ let getDetails = async e => {
     },
     body : JSON.stringify(state)
   }
-  let details = await fetch('http://localhost:3000/api/selectExample',config) //Change to api/details
-  return details
+  let details = await fetch('http://localhost:3000/api/details',config)
+  let data = await details.json();
+  //console.log(data);
+  competitionDetails.name = data.name;
+  competitionDetails.description = data.description;
+  competitionDetails.teamMembersMax = data.teamMembersMax;
+  competitionDetails.institution_city = data.institution_city;
 }
 
 export default function Details() {
   const [open, setOpen] = React.useState(false);
   var details = getDetails();
+  var validation = createUser();
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
   function handleJoin () {
-    if () {
+    if(validationDetail.validationsPassed){
       Router.push('/competitions/success_register');
-    }else {
-      Router.push('/competitions/fail_register');
+    }else{
+      Router.push('/competitions/fail_register')
     }
-
   }
 
   return (
@@ -73,7 +105,7 @@ export default function Details() {
       >
         <Box sx={style}>
           <Typography id="modal-competition-name" variant="h5" component="h2">
-            Competition Name
+            {competitionDetails.name}
           </Typography>
 
           <div id='modal-content'>
@@ -83,15 +115,15 @@ export default function Details() {
             </Typography>
 
             <Typography id="modal-competition-description" sx={{ mt: 2 }}>
-                Duis mollis, est non commodo luctus, nisi erat porttitor ligula.
+                {competitionDetails.description}
             </Typography>
 
             <Typography id="modal-competition-venue-head" sx={{ mt: 2, color: '#8B8B8B' }}>
-                Venue
+                Venue/s
             </Typography>
 
             <Typography id="modal-competition-venue" sx={{ mt: 2 }}>
-                ICESI, Cali
+                {competitionDetails.institution_city} 
             </Typography>
 
             <Typography id="modal-competition-max-members-head" sx={{ mt: 2, color: '#8B8B8B' }}>
@@ -99,7 +131,7 @@ export default function Details() {
             </Typography>
 
             <Typography id="modal-competition-max-members" sx={{ mt: 2 }}>
-                3
+              {competitionDetails.teamMembersMax}
             </Typography>
           </div>
 
@@ -113,3 +145,7 @@ export default function Details() {
     </div>
   );
 }
+
+
+
+
