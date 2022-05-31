@@ -42,7 +42,7 @@ let getDetails = async e => {
     },
     body : JSON.stringify(state)
   }
-  let details = await fetch('http://localhost:3000/api/selectExample',config) //Change to api/details
+  let details = await fetch('http://localhost:3000/api/details',config)
   let data = await details.json();
   console.log(data);
   competitionDetails.name = data.name;
