@@ -1,5 +1,6 @@
 import '../styles/globals.css'
 import '../styles/createCompetition.css'
+import '../styles/signIn.css'
 import { SessionProvider } from "next-auth/react"
 import { ThemeProvider } from '@emotion/react'
 import theme from '../theme';

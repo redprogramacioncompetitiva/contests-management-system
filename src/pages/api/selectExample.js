@@ -1,8 +1,9 @@
 import database from "../../util/database";
 
-export default async function handle(req) {
+export default async function handle(req,res) {
     
-    var idCompetition = '4';
+    var body = req.body;
+    var idCompetition = body.competitionId;
     
     switch (req.method){
         case "GET": res.statusCode = 404; break;
@@ -44,7 +45,6 @@ export default async function handle(req) {
                 city : cityInfo.city_name
             };
 
-            console.log(details);
-
+            res.send(details)
     }
 }
