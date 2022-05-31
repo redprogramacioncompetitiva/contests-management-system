@@ -5,19 +5,16 @@ export default class TeamsItems extends Component {
 
     constructor(props) {
         super(props)
-        this.state ={
-            members : [this.props.members]
-        }
     }
 
     render() {
         return (
-            <section className={style.card}>
-                <section className={style.cardBody}>
+            <section className={style.teamSection}>
+                <section className={style.teamBody}>
                     <h3>{this.props.teamName}</h3>
                     <h5>{this.props.institution}</h5>
                     <ul>
-                        {this.state.members.map((e) =>
+                        {this.props.members.map((e) =>
                             <li>{e}</li>
                         )}
                     </ul>
