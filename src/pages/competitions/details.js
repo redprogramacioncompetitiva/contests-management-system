@@ -3,6 +3,8 @@ import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
+import Router from "next/router";
+
 
 const style = {
   position: 'absolute',
@@ -21,6 +23,9 @@ export default function BasicModal() {
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
+  function handleJoin () {
+    Router.push('/competitions/success_register');
+  }
 
   return (
     <div>
@@ -64,7 +69,7 @@ export default function BasicModal() {
           </div>
 
           <Box sx={{ display:'flex' ,justifyContent:'center'}}>
-            <Button sx={{width:100, backgroundColor: '#01A4FF', color: '#FFFFFF', borderRadius: 2}} variant='contained    '>
+            <Button sx={{width:100, backgroundColor: '#01A4FF', color: '#FFFFFF', borderRadius: 2}} variant='contained    ' onClick={handleJoin}>
                 Join
             </Button>
           </Box>
