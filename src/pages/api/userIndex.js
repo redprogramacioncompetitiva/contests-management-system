@@ -49,6 +49,7 @@ export default async function handler(req,res){
     }
 
     var competitionsDisabled = []
+    //Search competitions that don't accept enrollment
     const compsDisabled = await db.query('SELECT * FROM COMPETITION WHERE ID_STATUS <> \'6\'')
     for (let index = 0; index < compsDisabled.rows.length; index++) {
         var venues = await db.query('SELECT VENUE_NAME FROM VENUE WHERE ID_VENUE IN(SELECT ID_VENUE FROM VENUE_COMPETITION WHERE ID_COMPETITION = $1)',[compsDisabled.rows[index].id_competition])
