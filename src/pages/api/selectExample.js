@@ -1,6 +1,6 @@
 import database from "../../util/database";
 
-export default async function handle(req) {
+export default async function handle(req,res) {
     
     var body = req.body;
     var idCompetition = body.competitionId;
@@ -45,7 +45,6 @@ export default async function handle(req) {
                 city : cityInfo.city_name
             };
 
-            console.log(details);
-
+            res.send(details)
     }
 }
