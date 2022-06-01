@@ -12,37 +12,66 @@ const Navbar = () => {
                 </div>
                 <div id="menu-btn"><FaAlignJustify /></div>
             </div>
-            <ul className="sidebar-list">
-                <li>
-                    <a href="/home">
-                        <FaAngleRight id="sidebar-list-item" />
-                        <span id="sidebar-link"> Home </span>
-                    </a>
+            <row className="sidebar-list">
+                <ul>
+                    <li>
+                        <a href="/home">
+                            <FaAngleRight id="sidebar-list-item" />
+                            <span id="sidebar-link"> Home </span>
+                        </a>
+                    </li>
                     <div className="spacer"></div>
-                </li>
-                <div className="spacer"></div>
-                <li>
-                    <a href="/register">
-                        <FaAngleRight id="sidebar-list-item" />
-                        <span id="sidebar-link"> Registrar </span>
-                    </a>
-                </li>
-                <div className="spacer"></div>
-                <li>
-                    <a href="/createTeam">
-                        <FaAngleRight id="sidebar-list-item" />
-                        <span id="sidebar-link"> Crear equipo </span>
-                    </a>
-                </li>
-                <div className="spacer"></div>
-                <li>
-                    <a href="/createCompetition">
-                        <FaAngleRight id="sidebar-list-item" />
-                        <span id="sidebar-link"> Crear Competencia </span>
-                    </a>
-                </li>
-                <div className="spacer"></div>
-            </ul>
+                    <li>
+                        <a href="/register">
+                            <FaAngleRight id="sidebar-list-item" />
+                            <span id="sidebar-link"> Registrar </span>
+                        </a>
+                    </li>
+                    <div className="spacer"></div>
+                    <li>
+                        <a href="/createTeam">
+                            <FaAngleRight id="sidebar-list-item" />
+                            <span id="sidebar-link"> Crear equipo </span>
+                        </a>
+                    </li>
+                    <div className="spacer"></div>
+                    <li>
+                        <a href="/createCompetition">
+                            <FaAngleRight id="sidebar-list-item" />
+                            <span id="sidebar-link"> Crear Competencia </span>
+                        </a>
+                    </li>
+                    <div className="spacer"></div>
+                    <li>
+                        <a href="/createTeam">
+                            <FaAngleRight id="sidebar-list-item" />
+                            <span id="sidebar-link"> Crear equipo </span>
+                        </a>
+                    </li>
+                    <div className="spacer"></div>
+                    <li>
+                        <a href="/users/1">
+                            <FaAngleRight id="sidebar-list-item" />
+                            <span id="sidebar-link"> Usuarios </span>
+                        </a>
+                    </li>
+                    <div className="spacer"></div>
+                    <li>
+                        <a href="/home/team/add">
+                            <FaAngleRight id="sidebar-list-item" />
+                            <span id="sidebar-link"> Agregar a Equipo </span>
+                        </a>
+                    </li>
+                    <div className="spacer"></div>
+                    <li>
+                        <a href="/competitions/details">
+                            <FaAngleRight id="sidebar-list-item" />
+                            <span id="sidebar-link"> Detalles de competencias </span>
+                        </a>
+                    </li>
+                </ul>
+            </row>
+
             <div className="user-logged">
                 <FaUserShield />  USERNAME
             </div>

@@ -25,24 +25,28 @@
 }
 
 .sidebar-list{
-    margin-top: 24px;
+    margin-top: 12px;
+    display: flex;
+    display: block;
+    position: absolute;
 }
 
-.sidebar-list {
+.sidebar-list ul{
     padding-left: 5px;
     padding-right: 6px;
+    list-style: none outside none;
+    min-height: 280px;
 }
 
-.sidebar-list  li{
+.sidebar-list ul li{
     height: 50px;
-    width: 100%;
     list-style: none;
-    margin: 0px 0px;
     line-height: 50px;
     color: white;
+    height: auto;
 }
 
-.sidebar-list  li a{
+.sidebar-list ul li a{
     display: flex;
     align-items: center;
     transition: all 0.3s;
@@ -56,7 +60,7 @@
 }
 
 .spacer{
-    margin-bottom: 32px;
+    margin-bottom: 28px;
 }
 
 #sidebar-list-item{
