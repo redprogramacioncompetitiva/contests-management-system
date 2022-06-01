@@ -40,20 +40,11 @@ export default function CompetitionCreation() {
 
         const responseData = await response.json();
 
-        if(responseData.success){
-            console.log(responseData.message)
-            //window.location.href = '/'
-        }
+        alert(responseData.message)
+           
+        
   
     }
-
-    // const handleFocus = (event) => {
-    //     event.target.type = 'datetime-local'
-    // }
-
-    // const handleBlur = (event) => {
-    //     event.target.type = 'text'
-    // }
 
 
     return <div className='container-competition'>

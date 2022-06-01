@@ -7,12 +7,11 @@ export default async function handler(req, res) {
     const type = "'3'"
 
     if (method === 'POST') {
-
         if(new Date(data.startInscriptionDate).getTime() < new Date().getTime() ||
            new Date(data.endInscriptionDate).getTime() < new Date(data.startInscriptionDate).getTime() ||
            new Date(data.startDate).getTime() < new Date(data.endInscriptionDate).getTime() || 
            new Date(data.endDate).getTime() < new Date(data.startDate).getTime()){
-
+           
             res.send({
                 success: false,
                 message: "Fechas malas"
@@ -30,7 +29,7 @@ export default async function handler(req, res) {
            
             let insert = await db.query('INSERT INTO COMPETITION(NAME,DESCRIPTION,START_INSCRIPTION,END_INSCRIPTION,START_DATE,END_DATE,TEAM_MEMBERS_MIN,TEAM_MEMBERS_MAX,ID_STATUS) ' +
             'VALUES('+ data.name + ',' + data.description  + ',TO_TIMESTAMP('+ date[0] +'),TO_TIMESTAMP('+ date[1] +'),TO_TIMESTAMP('+ date[2] +'),TO_TIMESTAMP('+ date[3] +'),' + data.minMembers + ',' + data.maxMembers + ',' + type + ')');   
-    
+            
             res.send({
                 success: true,
                 message: "Competencia agregada"
