@@ -19,16 +19,11 @@ const style = {
   p: 4,
 };
 
-const test = {
-  idCompetition: 4,
-  idTeam: 'TM000000',
-  username: 'pepito'
-}
 
 const state = {
-  competitionId : 1,
-  leaderUserName: "andres123",
-  teamId: 'TM000000'
+  idCompetition : 1,
+  idTeam:'TM000000',
+  username: "andres123"
 }
 
 const competitionDetails = {
@@ -38,11 +33,7 @@ const competitionDetails = {
   institution_city:''
 }
 
-const validationDetail = {
-  validationsPassed: ''
-}
-
-const createUser = async () => {
+const validateTeam = async () => {
 
   let config = {
     method: 'POST',
@@ -50,15 +41,16 @@ const createUser = async () => {
       'Accept' : 'application/json',
       'Content-Type' : 'application/json'
     },
-    body: JSON.stringify(test)
+    body: JSON.stringify(state)
   }
   let r= await fetch("http://localhost:3000/api/team/enrollment", config)
   let data = await r.json()
-  console.log(data);
-  validationDetail.validationsPassed=data.validationsPassed;
+  return data
+  //console.log(data);
+  //validationDetail.validationsPassed=data.validationsPassed;
 }
 
-let getDetails = async e => {
+const getDetails = async e => {
   var config = {
     method: 'POST',
     headers: {
@@ -69,7 +61,7 @@ let getDetails = async e => {
   }
   let details = await fetch('http://localhost:3000/api/details',config)
   let data = await details.json();
-  //console.log(data);
+  console.log(data);
   competitionDetails.name = data.name;
   competitionDetails.description = data.description;
   competitionDetails.teamMembersMax = data.teamMembersMax;
@@ -78,13 +70,24 @@ let getDetails = async e => {
 
 export default function Details() {
   const [open, setOpen] = React.useState(false);
-  var details = getDetails();
-  var validation = createUser();
-  const handleOpen = () => setOpen(true);
-  const handleClose = () => setOpen(false);
-  const handleJoin = async e => {
 
-    if(validationDetail.validationsPassed){
+  const handleOpen = () => setOpen(true); getDetails();
+  const handleClose = () => setOpen(false);
+
+  const handleJoin = async e => {
+    let config1 = {
+      method: 'POST',
+      headers: {
+        'Accept' : 'application/json',
+        'Content-Type' : 'application/json'
+      },
+      body: JSON.stringify(state)
+    }
+    let r= await fetch("http://localhost:3000/api/team/enrollment", config1)
+    let data = await r.json()
+    let validation = data
+    console.log(data)
+    if (validation.validationsPassed){
       var config = {
         method: 'POST',
         headers: {
@@ -93,11 +96,9 @@ export default function Details() {
         },
         body : JSON.stringify(state)
       }
-      let details = await fetch('http://localhost:3000/api/competition/join',config)
-      let data = await details.json();
-      console.log(data);
+      await fetch('http://localhost:3000/api/competition/join', config)
+
       Router.push('/competitions/success_register');
-      
     }else{
       Router.push('/competitions/fail_register')
     }
@@ -107,13 +108,13 @@ export default function Details() {
     <div>
       <div id='information'>
         <b>Competition Id: </b>
-        <p id='competition-id'>{state.competitionId}</p>
+        <p id='competition-id'>{state.idCompetition}</p>
 
-        <b>Leader username: </b>
-        <p id='leader-username'>{state.leaderUserName}</p>
+        <b>Username: </b>
+        <p id='leader-username'>{state.username}</p>
 
         <b>Team Id: </b>
-        <p id='team-id'>{state.teamId}</p>
+        <p id='team-id'>{state.idTeam}</p>
       </div>
       <Button onClick={handleOpen}>Open modal</Button>
       <Modal
