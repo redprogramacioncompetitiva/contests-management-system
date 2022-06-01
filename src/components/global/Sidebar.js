@@ -1,6 +1,8 @@
 import { FaAlignJustify, FaAngleRight, FaUserShield, FaSignOutAlt } from "react-icons/fa";
 
-const Navbar = () => {
+import { useSession, signIn, signOut } from "next-auth/react"
+const Sidebar = () => {
+    const { data: session } = useSession()
     return (
         <>
             <div className="sidebar-logo">
@@ -73,15 +75,15 @@ const Navbar = () => {
             </row>
 
             <div className="user-logged">
-                <FaUserShield />  USERNAME
+                <FaUserShield />  {session.name}
             </div>
 
-            <a href="/logout " className="logout-block">
-                <span id="logout-text"> logout </span>
-                <FaSignOutAlt id="logout-btn" />
-            </a>
+            <div className="logout-block">
+                <span id="logout-text">  </span>
+                <button onClick={signOut} id="logout-btn"><p>signout <FaSignOutAlt /></p> </button>
+            </div>
         </>
     )
 }
 
-export default Navbar
+export default Sidebar
