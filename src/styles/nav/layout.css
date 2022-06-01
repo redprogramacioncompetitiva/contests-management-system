@@ -1,0 +1,23 @@
+.layout-container{
+    position: relative;
+    min-height: 100hv;
+    width: 100%;
+}
+
+.sidebar-main-containter{
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 224px;
+    background: #E5E5E5;
+    
+}
+
+.children-container{
+    background-color: blue;
+    position:absolute;
+    height: 100%;
+    width: calc(100% - 224px);
+    left: 224px;
+}
