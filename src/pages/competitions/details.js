@@ -21,9 +21,9 @@ const style = {
 
 
 const state = {
-  idCompetition : 1,
+  idCompetition : 10,
   idTeam:'TM000000',
-  username: "andres123"
+  username: "pepito"
 }
 
 const competitionDetails = {
@@ -61,7 +61,7 @@ const getDetails = async e => {
   }
   let details = await fetch('http://localhost:3000/api/details',config)
   let data = await details.json();
-  console.log(data);
+  //console.log(data);
   competitionDetails.name = data.name;
   competitionDetails.description = data.description;
   competitionDetails.teamMembersMax = data.teamMembersMax;
@@ -96,9 +96,10 @@ export default function Details() {
         },
         body : JSON.stringify(state)
       }
+      Router.push('/competitions/success_register')
       await fetch('http://localhost:3000/api/competition/join', config)
 
-      Router.push('/competitions/success_register');
+      
     }else{
       Router.push('/competitions/fail_register')
     }
