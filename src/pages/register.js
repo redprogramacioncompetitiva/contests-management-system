@@ -73,7 +73,7 @@ export default function Register(req, res) {
             body: JSON.stringify(state)
         }
 
-        let response = await fetch("http://localhost:3000/api/user/register", object);
+        let response = await fetch("/api/user/register", object);
 
         const result = await response.json();
 
