@@ -86,7 +86,12 @@ export default function Register(req, res) {
             message = "Ya existe alguien con ese nombre de usuario";
             type = "warning";
 
-        } else if (result.result === "PassNotEquals") {
+        } else if (result.result === "EmailNotUnique") {
+            message = "Ya existe alguien con ese email";
+            type = "warning";
+
+        }
+        else if (result.result === "PassNotEquals") {
             message = "Las contraseñas ingresadas no coinciden";
             type = "warning";
 
@@ -97,6 +102,7 @@ export default function Register(req, res) {
         } else if (result.result === "EmptySpaces") {
             message = "No pueden existir campos vacíos";
             type = "warning";
+
         } else if (result.result === "PassNotValidate") {
             message = "La contraseña no cumple con los requerimientos";
             type = "warning";
