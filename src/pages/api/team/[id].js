@@ -5,9 +5,9 @@ async function addToTeam(req, res) {
     const { method, body } = req;
     const { id } = req.query;
     if (method === "POST") {
-        const { userName } = body;
+        const { username } = body;
         const query = 'INSERT INTO USERS_TEAM (USERNAME, ID_TEAM) VALUES ($1, $2) RETURNING *';
-        const values = [userName, id];
+        const values = [username, id];
         try {
             const response = await db.query(query, values);
 

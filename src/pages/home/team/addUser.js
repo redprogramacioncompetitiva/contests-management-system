@@ -7,6 +7,7 @@ import { useSession } from "next-auth/react"
 import Mixim from '../../../components/RPCMixim'
 
 const AddUser = ({ users }) => {
+    console.log(users)
     const [user, setuser] = useState({
         username: ''
     })
@@ -15,9 +16,9 @@ const AddUser = ({ users }) => {
     const onSubmit = (e) => {
         e.preventDefault();
         //Geeting the team id of current user ⚠️
-        //const { id } = fetch(`api/team/${session.username}`, { method: "GET" })
+        const { id } = fetch(`api/team/${session.username}`, { method: "GET" })
         //Adding a user to TM000000 id team example ♻️, Integration replace TM000000 => id 
-        fetch(`/api/team/TM000000`, { method: "POST", headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(user) }).then(res => {
+        fetch(`/api/team/${id}`, { method: "POST", headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(user) }).then(res => {
             res.json().then(us => {
                 if (us.username) {
                     Mixim('User: ' + us.username + ' have been added succesfully', 'success')
@@ -56,10 +57,10 @@ const AddUser = ({ users }) => {
 
 export async function getStaticProps() {
     //For testing porpouses 🛑
-    const users = [{ userName: 'edvi' }, { userName: 'userreal' }, { userName: 'userfalso' }, { userName: 'joji' }, { userName: 'felipe_a' }]
+    //const users = [{ userName: 'edvi' }, { userName: 'userreal' }, { userName: 'userfalso' }, { userName: 'joji' }, { userName: 'felipe_a' }]
     //Call to HU-4 Endpoint (Get users)
-    //const req = await fetch("api/users/getall",{method:"GET"})
-    //const users = await req.json()
+    const req = await fetch("http://localhost:3000/api/user/getAll",{method:"GET"})
+    const users = await req.json()
     return { props: { users } }
 }
 
