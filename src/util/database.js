@@ -1,15 +1,15 @@
-import { Pool } from "pg";
+const { Pool } = require("pg");
 
 var db;
 
-if (!db){
-    db = new Pool({
-      user: 'postgres',
-      database: 'PI_database',
-      host: 'localhost',
-      port: "5432",
-      password: 'Blanco2021'
-    })
+if (!db) {
+  db = new Pool({
+    host: "localhost",
+    user: "postgres",
+    database: "PI1",
+    password: "password",
+    port: 5432,
+  });
 }
-export default db;
 
+export default db;
