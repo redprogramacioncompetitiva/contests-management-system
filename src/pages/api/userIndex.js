@@ -22,8 +22,8 @@ export default async function handler(req, res) {
 
     var newTeam = {
       id: teamsIds.rows[index].id_team,
-      intitution: institution.rows[0],
-      name: teamsIds.rows[index].team_nam,
+      institution: institution.rows[0],
+      teamName: teamsIds.rows[index].team_nam,
       members: membersData,
     };
     teams.push(newTeam);
@@ -94,6 +94,17 @@ export default async function handler(req, res) {
 
     competitionsDisabled.push(newComp);
   }
+
+  /* var teamsTest = [];
+
+  const prompTeam = {
+    id: "0001",
+    teamName: "PI1 22-1",
+    institution: "Icesi",
+    members: ["Gianni B", "Juan D", "Juan S", "Juan P", "John K", "Kennet S", "Mateo R"],
+  };
+
+  teamsTest.push(prompTeam); */
 
   const data = {
     teams: teams,

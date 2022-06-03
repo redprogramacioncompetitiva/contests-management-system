@@ -18,7 +18,7 @@ function userIndex({ data }) {
             <CustomHeader title="Competencias"></CustomHeader>
 
             <section id={style.competitionsEnabled}>
-              <h2>Competencias en las que puedo participar</h2>
+              <h2>Competencias en las que puedo inscribirme</h2>
 
               <div>
                 {data.competitionsEnabled.map((e) => (
@@ -36,7 +36,7 @@ function userIndex({ data }) {
 
             <section id={style.competitionsDisabled}>
               <h2>
-                Competencias en las que <strong>no</strong> puedo participar
+                Competencias en las que <strong>no</strong> puedo inscribirme
               </h2>
               <div>
                 {data.competitionsDisabled.map((e) => (
