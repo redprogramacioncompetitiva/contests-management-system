@@ -14,7 +14,7 @@ const Sidebar = () => {
                 </div>
                 <div id="menu-btn"><FaAlignJustify /></div>
             </div>
-            <row className="sidebar-list">
+            <div className="sidebar-list">
                 <ul>
                     <li>
                         <a href="/home">
@@ -72,10 +72,10 @@ const Sidebar = () => {
                         </a>
                     </li>
                 </ul>
-            </row>
+            </div>
 
             <div className="user-logged">
-                <FaUserShield />  {session.name}
+                <FaUserShield />  user
             </div>
 
             <div className="logout-block">

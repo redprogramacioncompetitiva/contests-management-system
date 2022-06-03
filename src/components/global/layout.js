@@ -19,11 +19,16 @@ const Layout = ({ children }) => {
 
     //NO SESSION RETURN:
 
-    return(
-        <>
-           { children }   
-        </>
-   )
+    return (
+        <div className="layout-container">
+            <div className="sidebar-main-containter">
+                <Sidebar />
+            </div>
+            <div className="children-container">
+                {children}
+            </div>
+        </div>
+    )
 
 }
 
