@@ -40,7 +40,8 @@ export default class MemberField extends Component {
   };
 
   handleSubmit = async (e) =>{
-    let tm = this.state.teamName;
+    
+    let tm = this.state;
     /*let config1 = {
       method: 'POST',
       headers: {
@@ -49,7 +50,7 @@ export default class MemberField extends Component {
       },
       body: JSON.stringify({tm})
     }*/
-
+    
     let r = await fetch('http://localhost:3000/api/team/teamInsert',{
       method: 'POST',
       headers: {
