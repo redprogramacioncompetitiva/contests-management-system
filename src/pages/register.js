@@ -8,6 +8,7 @@ import Snackbar from '@mui/material/Snackbar';
 import Button from '@mui/material/Button';
 import SendIcon from "@mui/icons-material/ArrowForward";
 import MuiAlert from '@mui/material/Alert';
+import Link from 'next/link';
 
 let state = {
     userName: "",
@@ -72,12 +73,12 @@ export default function Register(req, res) {
             body: JSON.stringify(state)
         }
 
-        let response = await fetch("http://localhost:3000/api/user/register", object);
+        let response = await fetch("/api/user/register", object);
 
         const result = await response.json();
 
         if (result.result === "Insert") {
-            window.location.href = "http://localhost:3000/";
+            window.location.href = "/signIn";
             message = "¡La cuenta se registró exitosamente!";
             type = "success";
 
@@ -85,7 +86,12 @@ export default function Register(req, res) {
             message = "Ya existe alguien con ese nombre de usuario";
             type = "warning";
 
-        } else if (result.result === "PassNotEquals") {
+        } else if (result.result === "EmailNotUnique") {
+            message = "Ya existe alguien con ese email";
+            type = "warning";
+
+        }
+        else if (result.result === "PassNotEquals") {
             message = "Las contraseñas ingresadas no coinciden";
             type = "warning";
 
@@ -93,9 +99,10 @@ export default function Register(req, res) {
             message = "El nombre de usuario no puede tener espacios";
             type = "warning";
 
-        }else if(result.result === "EmptySpaces") {
+        } else if (result.result === "EmptySpaces") {
             message = "No pueden existir campos vacíos";
             type = "warning";
+
         } else if (result.result === "PassNotValidate") {
             message = "La contraseña no cumple con los requerimientos";
             type = "warning";
@@ -114,7 +121,9 @@ export default function Register(req, res) {
                             <h5 className={styles.title}>Registro</h5>
                             <label className={styles.subtitle}>¿Ya perteneces a la RPC?</label>
 
-                            <a href="https://redprogramacioncompetitiva.com/" className={styles.link}>Iniciar sesión</a>
+                            <Link href="/signIn">
+                                <a className={styles.link}>Iniciar sesión</a>
+                            </Link>
                             <form onSubmit={handleSubmit} onChange={handleChange}>
                                 <div className="mb-3">
                                     <input name="userName" className={styles.inputContainer} placeholder="Nombre de usuario*" required />
@@ -122,7 +131,7 @@ export default function Register(req, res) {
 
                                 <section className={styles.inputAlignment}>
                                     <div className="mb-3">
-                                        <input name="name" className={styles.inputContainer} placeholder="Nombre*"  required />
+                                        <input name="name" className={styles.inputContainer} placeholder="Nombre*" required />
                                     </div>
 
                                     <div className="mb-3">
@@ -131,12 +140,12 @@ export default function Register(req, res) {
                                 </section>
 
                                 <div className="mb-3">
-                                    <input name="email" type="email" className={styles.inputContainer} placeholder="Email*" pattern= "[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*@[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*[.][a-zA-Z]{1,5}" required />
+                                    <input name="email" type="email" className={styles.inputContainer} placeholder="Email*" pattern="[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*@[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*[.][a-zA-Z]{1,5}" required />
                                 </div>
 
                                 <section className={styles.inputAlignment}>
                                     <div className="mb-3">
-                                            <span className={styles.span} data-tooltip="Debe contener: mínimo 6 caracteres, al menos una letra mayúscula y una minúscula, un número y un carácter especial ej: . , - , *">
+                                        <span className={styles.span} data-tooltip="Debe contener: mínimo 6 caracteres, al menos una letra mayúscula y una minúscula, un número y un carácter especial ej: . , - , *">
                                             <input name="password" type="password" className={styles.inputContainer} placeholder="Contraseña*" required />
                                         </span>
                                     </div>
