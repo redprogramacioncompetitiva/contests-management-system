@@ -1,15 +1,15 @@
-import { Pool } from "pg/lib";
+import { Pool } from "pg";
 
 var db;
 
 if (!db){
     db = new Pool({
       user: 'postgres',
-      database: 'PI',
+      database: 'PI_database',
       host: 'localhost',
-      port: 5432,
-      password: 'ortiz2003'
+      port: "5432",
+      password: 'Blanco2021'
     })
 }
- export default {db};
+export default db;
 

@@ -49,6 +49,7 @@ export default class MemberField extends Component {
       },
       body: JSON.stringify({tm})
     }*/
+
     let r = await fetch('http://localhost:3000/api/team/teamInsert',{
       method: 'POST',
       headers: {
@@ -85,6 +86,7 @@ export default class MemberField extends Component {
   };
 
   handleChanged = (e) => {
+    console.log("INSIDE CHANGE EVENT");
     let aux = this.state.members;
     let index = aux.indexOf(e.target.name);
     aux[index] = e.target.value; 
@@ -93,7 +95,7 @@ export default class MemberField extends Component {
       aux = aux.filter((item,index)=>{
       return aux.indexOf(item) === index;
     })
-
+    
     this.setState({
       members: aux,
     });
