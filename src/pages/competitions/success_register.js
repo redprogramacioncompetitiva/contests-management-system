@@ -24,25 +24,17 @@ export default function BasicModal() {
 
   return (
     <div>
-      <Button onClick={handleOpen}>Open modal</Button>
-      <Modal
-        open={open}
-        onClose={handleClose}
-        aria-labelledby="modal-modal-title"
-        aria-describedby="modal-modal-description"
-      >
-        <Box sx={style}>
-          <Typography id="modal-modal-title" variant="h6" component="h2">
-            <b>Training Session</b>
-          </Typography>
-          <Typography id="modal-modal-description" sx={{ mt: 4 }}>
-            The team was successfully registered in the competition!
-          </Typography>
-          <div>
-            <img src="../../icons/check_icon.png"/>
-          </div>
-        </Box>
-      </Modal>
+      <Box sx={style}>
+        <Typography id="modal-modal-title" variant="h6" component="h2">
+          <b>Training Session</b>
+        </Typography>
+        <Typography id="modal-modal-description" sx={{ mt: 4 }}>
+          The team was successfully registered in the competition!
+        </Typography>
+        <div>
+          <img src="../../icons/check_icon.png"/>
+        </div>
+      </Box>
     </div>
   );
 }
