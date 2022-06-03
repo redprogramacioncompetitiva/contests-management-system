@@ -4,13 +4,13 @@ import { Team, Competition } from "../../model/classes";
 export default async function handler(req, res) {
   const { method, body } = req;
   const teamsIds = await db.query(
-    "SELECT * FROM TEAM WHERE ID_TEAM IN (SELECT ID_TEAM FROM USER_TEAM_COMPETITION WHERE USERNAME = $1)",
+    "SELECT * FROM TEAM WHERE ID_TEAM IN (SELECT ID_TEAM FROM USERS_TEAM WHERE USERNAME = $1)",
     [body.user]
   );
   var teams = [];
   for (let index = 0; index < teamsIds.rows.length; index++) {
     var members = await db.query(
-      "SELECT USERNAME FROM USER_TEAM_COMPETITION WHERE ID_TEAM = $1",
+      "SELECT USERNAME FROM USERS_TEAM WHERE ID_TEAM = $1",
       [teamsIds.rows[index].id_team]
     );
     var institution = await db.query(
@@ -18,7 +18,8 @@ export default async function handler(req, res) {
       [teamsIds.rows[index].id_institution]
     );
 
-    /* var team = new Team(teamsIds.rows[index].id_team, institution.rows[0] ,teamsIds.rows[index].team_name,members.rows) */
+    /* /competitions/idCompetition
+    */
 
     var newTeam = {
       id: teamsIds.rows[index].id_team,
