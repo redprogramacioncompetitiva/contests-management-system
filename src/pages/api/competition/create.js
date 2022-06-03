@@ -4,7 +4,7 @@ export default async function handler(req, res) {
     
     const { method, body } = req;
     const data = body.data;
-    const type = "'3'"
+    const type = "'6'"
 
     if (method === 'POST') {
         if(new Date(data.startInscriptionDate).getTime() < new Date().getTime() ||
@@ -26,9 +26,10 @@ export default async function handler(req, res) {
         }else{
 
             let date = dateFormat(data)
-           
-            let insert = await db.query('INSERT INTO COMPETITION(NAME,DESCRIPTION,START_INSCRIPTION,END_INSCRIPTION,START_DATE,END_DATE,TEAM_MEMBERS_MIN,TEAM_MEMBERS_MAX,ID_STATUS) ' +
-            'VALUES('+ data.name + ',' + data.description  + ',TO_TIMESTAMP('+ date[0] +'),TO_TIMESTAMP('+ date[1] +'),TO_TIMESTAMP('+ date[2] +'),TO_TIMESTAMP('+ date[3] +'),' + data.minMembers + ',' + data.maxMembers + ',' + type + ')');   
+            let size = (await db.query('SELECT * FROM COMPETITION')).rows.length;
+            size++
+            let insert = await db.query('INSERT INTO COMPETITION(ID_COMPETITION,NAME,DESCRIPTION,START_INSCRIPTION,END_INSCRIPTION,START_DATE,END_DATE,TEAM_MEMBERS_MIN,TEAM_MEMBERS_MAX,ID_STATUS) ' +
+            'VALUES('+size+','+ data.name + ',' + data.description  + ',TO_TIMESTAMP('+ date[0] +'),TO_TIMESTAMP('+ date[1] +'),TO_TIMESTAMP('+ date[2] +'),TO_TIMESTAMP('+ date[3] +'),' + data.minMembers + ',' + data.maxMembers + ',' + type + ')');   
             
             res.send({
                 success: true,
