@@ -16,12 +16,6 @@ const Sidebar = () => {
             </div>
             <div className="sidebar-list">
                 <ul>
-                    <li>
-                        <a href="/home">
-                            <FaAngleRight id="sidebar-list-item" />
-                            <span id="sidebar-link"> Home </span>
-                        </a>
-                    </li>
                     <div className="spacer"></div>
                     <li>
                         <a href="/register">
@@ -71,16 +65,20 @@ const Sidebar = () => {
                             <span id="sidebar-link"> Detalles de competencias </span>
                         </a>
                     </li>
+                    <div className="spacer"></div>
+                    <li>
+                        <hr></hr>
+                        <div className="footer">
+                            <div className="user-logged">
+                                <FaUserShield />  {session.name}
+                            </div>
+
+                            <div className="logout-block">
+                                <button onClick={signOut} id="logout-btn"><p>signout <FaSignOutAlt /></p> </button>
+                            </div>
+                        </div>
+                    </li>
                 </ul>
-            </div>
-
-            <div className="user-logged">
-                <FaUserShield />  user
-            </div>
-
-            <div className="logout-block">
-                <span id="logout-text">  </span>
-                <button onClick={signOut} id="logout-btn"><p>signout <FaSignOutAlt /></p> </button>
             </div>
         </>
     )
