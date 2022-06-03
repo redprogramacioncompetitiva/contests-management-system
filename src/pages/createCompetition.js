@@ -1,6 +1,7 @@
 import Head from 'next/head'
 import { useRef } from 'react'
 import Image from 'next/image'
+import { Grid } from '@mui/material'
 
 
 export default function CompetitionCreation() {
@@ -83,6 +84,9 @@ export default function CompetitionCreation() {
                 <textarea ref={descRef} className="textarea" required></textarea>
             </div>
             <input className="create-btn" type="submit" value="Crear"></input>
+            <button className="back-btn" onClick={() => window.location.href = '/'}>Back</button>
         </form>
+
+        
     </div>
 }
