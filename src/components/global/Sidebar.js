@@ -7,7 +7,7 @@ const Sidebar = () => {
         <>
             <div className="sidebar-logo">
                 <div className="logo">
-                    <img src="images/logo.png" width="60" height="60" />
+                    <img src="/img/logo.png" width="60" height="60" />
                     <div className="sidebar-title">
                         Red de programación competitiva
                     </div>
