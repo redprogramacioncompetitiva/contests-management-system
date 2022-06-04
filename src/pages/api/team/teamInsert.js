@@ -38,12 +38,13 @@ export default async function handler(req, res) {
       
         //Create team
         const query = 'INSERT INTO TEAM(ID_TEAM,TEAM_NAME,LEADER_USERNAME,ID_INSTITUTION) VALUES ($1,$2,$3,$4) RETURNING ID_TEAM';
-                    //try {
-        const response = await db.query(query,values);
-                    //return res.status(200).json(response.rows[0]);
-                    /*} catch (e) {
-                        return res.status(400).json({message: e.message});
-                    }*/
+        
+        try {
+          const response = await db.query(query,values);
+          res.status(200).json(response.rows[0]);
+        } catch (e) {
+          res.status(400).json({message: e.message});
+        }
 
         //Add members to team if they exist
         let registeredUsersData = await db.query("SELECT s.username FROM users s");
@@ -57,7 +58,15 @@ export default async function handler(req, res) {
             console.log("FOUND");
             const valuesMember =[teamInfo.tm.members[i], id_team];
             const query = 'INSERT INTO USERS_TEAM(USERNAME, ID_TEAM) VALUES ($1,$2)';
-            const response = await db.query(query,valuesMember);
+
+            try {
+              const response = await db.query(query,valuesMember);
+              res.status(200).json(response.rows[0]);
+            } catch (error) {
+              res.status(400).json({message: e.message});
+            }
+            
+            
             
             //return res.status(200).json(response.rows[0]);
           }
