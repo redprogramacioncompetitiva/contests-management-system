@@ -3,7 +3,12 @@ import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import Router from "next/router";
-
+import { useSession, signIn, signOut, getSession } from "next-auth/react"
+import {useEffect, useState} from 'react';
+import InputLabel from '@mui/material/InputLabel';
+import MenuItem from '@mui/material/MenuItem';
+import FormControl from '@mui/material/FormControl';
+import Select from '@mui/material/Select';
 var state = {
     idCompetition : 0, //10
     idTeam:'',  //'TM000000'
@@ -33,10 +38,81 @@ const getDetails = async e => {
     competitionDetails.description = data.description;
     competitionDetails.teamMembersMax = data.teamMembersMax;
     competitionDetails.institution_city = data.institution_city;
+
+    const {data: session} = useSession();
+    state.username = session.username
 }
 
-const validateTeam = async () => {
 
+
+/*Details.getInitialProps = async(context) => {
+    const path = context.asPath.split('/');
+    const idCompetition = path[path.length-1];
+    state.idCompetition = idCompetition;
+    getDetails();
+    const details = competitionDetails;
+    return { competitionDetails : details }
+}*/
+
+const showPosts = () => {
+  const [team, setTeam] = useState('');
+  const [posts, setPosts] = useState([]);
+  const handleChange = (event) => {
+    state.idTeam = (event.target.value)
+    setTeam(event.target.value);
+    console.log(state.idTeam)
+  };
+  useEffect( () => { 
+      async function fetchData() {
+          try {
+            let config = {
+              method: 'POST',
+              headers: {
+                'Accept' : 'application/json',
+                'Content-Type' : 'application/json'
+              },
+              body: JSON.stringify(state)
+            }
+            let r= await fetch("http://localhost:3000/api/team/leader", config)
+            let data = await r.json()
+              setPosts(data);
+              console.log(data)
+          } catch (err) {
+              console.log(err);
+          }
+      }
+      fetchData();
+  }, []);
+  return(
+    
+      <FormControl sx={{ mt: 2, mb: 2, minWidth: 80 }}>
+      <InputLabel id="demo-simple-select-autowidth-label">Team</InputLabel>
+      <Select
+            labelId="demo-simple-select-autowidth-label"
+            id="demo-simple-select-autowidth"
+            value={team}
+            onChange={handleChange}
+            autoWidth
+            label="Team"
+          >
+            {posts.map((team)=> (
+        <MenuItem key= {team.id_team} value={team.id_team}> {team.team_name} - {team.id_team} </MenuItem>
+      ))}
+      </Select>
+      
+      </FormControl>
+    
+  );
+}
+
+
+Details.getInitialProps = async(context) => {
+  const path = context.asPath.split('/');
+  const idCompetition = path[path.length-1];
+  state.idCompetition = idCompetition;
+  getDetails();
+  const session = await getSession(context)
+  if(session){
     let config = {
       method: 'POST',
       headers: {
@@ -45,24 +121,15 @@ const validateTeam = async () => {
       },
       body: JSON.stringify(state)
     }
-    let r= await fetch("http://localhost:3000/api/team/enrollment", config)
+    let r= await fetch("http://localhost:3000/api/team/leader", config)
     let data = await r.json()
-    return data
-    //console.log(data);
-    //validationDetail.validationsPassed=data.validationsPassed;
-  }
-
-Details.getInitialProps = async(context) => {
-    const path = context.asPath.split('/');
-    const idCompetition = path[path.length-1];
-    state.idCompetition = idCompetition;
-    getDetails();
     const details = competitionDetails;
-    return { competitionDetails : details }
+    return { competitionDetails : details, data: data }
+  }
+  
 }
-
-export default function Details({competitionDetails}) {
-    
+export default function Details({competitionDetails, data}) {
+  console.log(data)
     const handleJoin = async e => {
         let config1 = {
           method: 'POST',

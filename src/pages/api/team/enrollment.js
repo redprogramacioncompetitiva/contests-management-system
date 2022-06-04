@@ -6,7 +6,7 @@ export default async function handle(req, res){
     let {idCompetition, idTeam, username} = body 
 
     var teamLeader = await database.query(
-        `SELECT TEAM_LEADER
+        `SELECT LEADER_USERNAME
         FROM TEAM
         WHERE ID_TEAM = '${idTeam}'`
     )

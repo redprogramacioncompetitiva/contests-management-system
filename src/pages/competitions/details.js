@@ -9,6 +9,7 @@ import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 import {useState, useEffect} from "react"
+import { useSession, signIn, signOut } from "next-auth/react"
 const style = {
   position: 'absolute',
   top: '50%',
@@ -145,7 +146,7 @@ const getTeams = async()=>{
 }
 
 export default function Details() {
-  
+  const { data: session, status } = useSession()
   const handleOpen = () => setOpen(true); getDetails();
   const handleClose = () => setOpen(false);
   const [open, setOpen] = React.useState(false);
@@ -159,6 +160,7 @@ export default function Details() {
     useEffect( () => { 
         async function fetchData() {
             try {
+              
               let config = {
                 method: 'POST',
                 headers: {
@@ -170,6 +172,9 @@ export default function Details() {
               let r= await fetch("http://localhost:3000/api/team/leader", config)
               let data = await r.json()
                 setPosts(data);
+                console.log(data)
+                
+                //console.log(useSession())
             } catch (err) {
                 console.log(err);
             }

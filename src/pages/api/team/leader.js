@@ -10,7 +10,7 @@ export default async function handle(req, res){
     SELECT DISTINCT C.TEAM_NAME, C.ID_TEAM 
     FROM TEAM C JOIN USERS_TEAM D
     ON D.ID_TEAM = C.ID_TEAM
-    WHERE TEAM_LEADER = '${username}'`)
+    WHERE LEADER_USERNAME = '${username}'`)
 
     return res.send(teamLeader.rows)
 
