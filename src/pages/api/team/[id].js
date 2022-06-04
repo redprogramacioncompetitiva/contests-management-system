@@ -1,6 +1,6 @@
 import db from "../../../util/database";
 
-export default async function (req, res) {   
+export default async function addToteam (req, res) {   
     const {method, body} = req;
     const {id} = req.query;
     if (method === "POST") {
@@ -21,5 +21,3 @@ export default async function (req, res) {
         }
     }
 }
-
-export default addToTeam;
