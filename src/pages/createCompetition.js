@@ -84,7 +84,6 @@ export default function CompetitionCreation() {
                 <textarea ref={descRef} className="textarea" required></textarea>
             </div>
             <input className="create-btn" type="submit" value="Crear"></input>
-            <button className="back-btn" onClick={() => window.location.href = '/'}>Back</button>
         </form>
 
         
