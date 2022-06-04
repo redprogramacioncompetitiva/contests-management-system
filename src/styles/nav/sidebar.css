@@ -1,0 +1,109 @@
+.sidebar-logo {
+    background-color: #FDBC1E;
+    padding-right: 12px;
+}
+
+.sidebar-logo .logo{
+    display: flex;
+    height: 120px;
+    align-items: center;
+    display: flex;
+    column-gap: 20px;
+    justify-content: space-between;
+}
+
+.sidebar-logo .logo .sidebar-title{
+    color: white;
+}
+
+.sidebar-logo #menu-btn{
+    position: absolute;
+    left: 88%;
+    top: 6px;
+    font-size: 20px;
+    color: white;
+}
+
+.sidebar-list{
+    margin-top: 12px;
+    display: flex;
+    display: block;
+    position: absolute;
+}
+
+.sidebar-list ul{
+    padding-left: 5px;
+    padding-right: 6px;
+    list-style: none outside none;
+    min-height: 280px;
+}
+
+.sidebar-list ul li{
+    height: 50px;
+    list-style: none;
+    line-height: 50px;
+    color: white;
+    height: auto;
+}
+
+.sidebar-list ul li a{
+    display: flex;
+    align-items: center;
+    transition: all 0.3s;
+    border-radius: 16px;
+    background-color: #FDBC1E;
+}
+
+.sidebar-list  li a:hover{
+    background:  white;
+    color: #FDBC1E;
+}
+
+.spacer{
+    margin-bottom: 28px;
+}
+
+#sidebar-list-item{
+    min-width: 50px;
+    height: 32px;
+}
+
+#sidebar-link{
+    font-size: 12px;
+}
+
+.sidebar-profile{
+    position: absolute;
+    bottom: 5px;
+    left: 5px;
+    display: flex;
+    align-items: center;
+    column-gap: 20%;
+}
+
+.sidebar-profile #user-block{
+    display: flex;
+    align-items: center;
+    border-radius: 16px;
+    column-gap: 12px;
+}
+
+.user-logged{
+    display: flex;
+    align-items: center;
+    color: black;
+    column-gap: 12px;
+    padding-left: 12px;
+}
+
+#logout-btn{
+    background-color: transparent;
+    border-color: transparent;
+    align-items: center;
+    column-gap: 12px;
+}
+
+.footer{
+    display: flex;
+    flex-flow: column wrap;
+}
