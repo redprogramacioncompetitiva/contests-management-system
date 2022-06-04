@@ -1,5 +1,4 @@
-const { Pool } = require('pg')
-
+const { Pool } = require("pg");
 
 let db;
 
@@ -12,6 +11,5 @@ if (!db) {
     port: "5432"
   })
 }
-
 
 export default db;

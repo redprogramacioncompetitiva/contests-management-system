@@ -1,13 +1,12 @@
 import { Button } from '@mui/material'
 import React, { useState } from 'react'
-import RPCAutocomplete from '../../../components/RPCAutocomplete'
-import RPCContainer from '../../../components/RPCContainer'
-import RPCTitle from '../../../components/RPCTitle'
+import RPCAutocomplete from '../../components/RPCAutocomplete'
+import RPCContainer from '../../components/RPCContainer'
+import RPCTitle from '../../components/RPCTitle'
 import { useSession } from "next-auth/react"
-import Mixim from '../../../components/RPCMixim'
+import Mixim from '../../components/RPCMixim'
 
 const AddUser = ({ users }) => {
-    console.log(users)
     const [user, setuser] = useState({
         username: ''
     })
@@ -57,9 +56,9 @@ const AddUser = ({ users }) => {
 
 export async function getStaticProps() {
     //For testing porpouses 🛑
-    //const users = [{ userName: 'edvi' }, { userName: 'userreal' }, { userName: 'userfalso' }, { userName: 'joji' }, { userName: 'felipe_a' }]
+    //const users = [{ username: 'edvi' }, { username: 'userreal' }, { username: 'userfalso' }, { username: 'joji' }, { username: 'felipe_a' }]
     //Call to HU-4 Endpoint (Get users)
-    const req = await fetch("http://localhost:3000/api/user/getAll",{method:"GET"})
+   const req = await fetch("http://localhost:3000/api/user/getAll",{method:"GET"})
     const users = await req.json()
     return { props: { users } }
 }
