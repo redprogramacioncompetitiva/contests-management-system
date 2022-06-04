@@ -1,11 +1,12 @@
 import { Component } from "react";
 import styles from "../../styles/createTeam.module.css";
-import { useSession } from "next-auth/react";
 
 export default class MemberField extends Component {
+  
   constructor(props) {
     super(props);
-    this.state = { members: [""], teamName: "" };
+    console.log("***A: "+props.username);
+    this.state = { members: [""], teamName: "", username: props.username};
   }
 
   handleDelete = (e) => {
@@ -52,7 +53,8 @@ export default class MemberField extends Component {
       body: JSON.stringify({tm})
     }*/
     
-
+    
+    
     let r = await fetch('http://localhost:3000/api/team/teamInsert',{
       method: 'POST',
       headers: {
@@ -61,6 +63,7 @@ export default class MemberField extends Component {
       },
       body: JSON.stringify({tm})
     });
+
     /*
     let config = {
       method: 'POST',

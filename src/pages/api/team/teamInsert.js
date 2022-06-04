@@ -4,7 +4,13 @@ export default async function handler(req, res) {
     const {method, body} = req;
     const id = req.query;
     if (method === "POST") {
-        const teamInfo = body;
+
+      const teamInfo = body;
+      const username_leader = teamInfo.tm.username;
+      let queryUserType = "SELECT u.user_type FROM USERS u WHERE USERNAME = '"+username_leader+"'";
+      let leaderUserType = await db.query(queryUserType);
+      //console.log(leaderUserType.rows[0].user_type);
+      if(leaderUserType.rows[0].user_type == 2){
         //Generate a random code
         const ASCII_FOR_A= 65;
         const MAX_NUMERIC_PART_NUM = 999999;
@@ -32,7 +38,7 @@ export default async function handler(req, res) {
         } while (takenId);
 
         const teamNameFromData = teamInfo.tm.teamName;
-        const username_leader = "pepito";
+        console.log("***************************************************************username: "+username_leader);
         const id_institution = 1;
         const values = [ id_team, teamNameFromData, username_leader, id_institution];
       
@@ -49,14 +55,17 @@ export default async function handler(req, res) {
         //Add members to team if they exist
         let registeredUsersData = await db.query("SELECT s.username FROM users s");
         let registeredUsers = registeredUsersData.rows;
-        
-        for (let i = 0; i < teamInfo.tm.members.length; i++) {
-          let foundINdex = registeredUsers.findIndex(element => element.username == teamInfo.tm.members[i]);
+        let usersToInvite = teamInfo.tm.members;
+        usersToInvite.push(username_leader);
+        //console.log(usersToInvite);
+
+        for (let i = 0; i < usersToInvite.length; i++) {
+          let foundINdex = registeredUsers.findIndex(element => element.username == usersToInvite[i]);
           if(foundINdex == -1){
-            //console.log("NOT FOUND");
+              //console.log("NOT FOUND");
           }else{
             //console.log("FOUND");
-            let valuesMember =[teamInfo.tm.members[i], id_team];
+            let valuesMember =[usersToInvite[i], id_team];
             //console.log(teamInfo.tm.members[i]+"; "+id_team);
             let query = 'INSERT INTO USERS_TEAM(USERNAME, ID_TEAM) VALUES ($1,$2)';          
             let response = await db.query(query,valuesMember);
@@ -66,8 +75,9 @@ export default async function handler(req, res) {
           }
         }
         res.status(200).send("okay");
-        //let userFoundIndex = registeredUsers.findIndex(element => element.username);
-
+      }else{
+        res.status(200).send("can't create team");
+      }
     }
 }
 /*

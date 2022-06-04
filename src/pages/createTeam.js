@@ -2,8 +2,13 @@
 import MemberField from "../components/teamsComponents/memberField";
 import styles from "../styles/createTeam.module.css";
 import CustomHeader from "../components/CustomHeader";
+import { useSession } from "next-auth/react";
 
 export default function Component() {
+  //const {data: session } = useSession();
+  //const { data: session, status } = useSession()
+  //const username = session;
+  const username = "pepito";
   let addCompetitorField = () => {};
   return (
     <div>
@@ -16,7 +21,7 @@ export default function Component() {
           <br />
           <hr className={styles.hr}></hr>
           <div id="competitors-fields">
-            <MemberField></MemberField>
+            <MemberField username={username}></MemberField>
           </div>
           <button className={styles.cancelBtn}>Cancelar</button>
         </div>
