@@ -1,6 +1,5 @@
 import { useSession, signOut } from "next-auth/react";
 import { useRouter } from "next/router";
-import { Redirect } from "react-router-dom";
 
 import CompetitionItem from "../../../components/users/CompetitionItem";
 import CustomHeader from "../../../components/CustomHeader";
