@@ -6,7 +6,7 @@ export default class MemberField extends Component {
   
   constructor(props) {
     super(props);
-    console.log("***A: "+props.username);
+    //console.log("**************************************************************************memberField: "+props.username);
     this.state = { members: [""], teamName: "", username: props.username};
   }
 
@@ -65,7 +65,10 @@ export default class MemberField extends Component {
     const responseData = await responseO.json();
 
     if(responseData.success){
-      this.props.router.push('/');
+      alert("Equipo creado exitosamente");
+      this.props.router.push('/'+this.props.username);
+    }else{
+      alert("No se pudo crear el equipo");
     }
     //router.push('/');
 

@@ -6,12 +6,17 @@ export default async function handler(req, res) {
     if (method === "POST") {
 
       const teamInfo = body;
+      const teamNameFromData = teamInfo.tm.teamName;
       const username_leader = teamInfo.tm.username;
-      console.log(username_leader);
+      //console.log(teamNameFromData);
+      //console.log("*************************username leader in teaminsert: "+username_leader);
       let queryUserType = "SELECT u.user_type FROM USERS u WHERE USERNAME = '"+username_leader+"'";
       let leaderUserType = await db.query(queryUserType);
-      console.log(leaderUserType.rows[0].user_type);
-      if(leaderUserType.rows[0].user_type == 2){
+
+      //console.log("************************teamInsert USERTYPE: "+leaderUserType.rows[0]);
+      //console.log("usertype: "+leaderUserType.rows[0].user_type);
+
+      if((leaderUserType.rows[0].user_type == 2 || leaderUserType.rows[0].user_type == 4) && teamNameFromData.length>0){
         //Generate a random code
         const ASCII_FOR_A= 65;
         const MAX_NUMERIC_PART_NUM = 999999;
@@ -38,7 +43,6 @@ export default async function handler(req, res) {
           }
         } while (takenId);
 
-        const teamNameFromData = teamInfo.tm.teamName;
         const id_institution = 1;
         const values = [ id_team, teamNameFromData, username_leader, id_institution];
       
