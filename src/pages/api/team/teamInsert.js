@@ -7,9 +7,10 @@ export default async function handler(req, res) {
 
       const teamInfo = body;
       const username_leader = teamInfo.tm.username;
+      console.log(username_leader);
       let queryUserType = "SELECT u.user_type FROM USERS u WHERE USERNAME = '"+username_leader+"'";
       let leaderUserType = await db.query(queryUserType);
-      //console.log(leaderUserType.rows[0].user_type);
+      console.log(leaderUserType.rows[0].user_type);
       if(leaderUserType.rows[0].user_type == 2){
         //Generate a random code
         const ASCII_FOR_A= 65;
@@ -38,7 +39,6 @@ export default async function handler(req, res) {
         } while (takenId);
 
         const teamNameFromData = teamInfo.tm.teamName;
-        console.log("***************************************************************username: "+username_leader);
         const id_institution = 1;
         const values = [ id_team, teamNameFromData, username_leader, id_institution];
       
@@ -74,9 +74,15 @@ export default async function handler(req, res) {
             //return res.status(200).json(response.rows[0]);
           }
         }
-        res.status(200).send("okay");
+        res.send({
+          success: true,
+          message: "Equipo creado"
+      })
       }else{
-        res.status(200).send("can't create team");
+        res.send({
+          success: false,
+          message: "equipo no creado"
+      })
       }
     }
 }
