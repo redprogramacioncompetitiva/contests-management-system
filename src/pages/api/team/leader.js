@@ -3,7 +3,7 @@ import database from "../../../util/database";
 export default async function handle(req, res){
 
     const {method, body} = req;
-    let {idCompetition, idTeam, username} = body 
+    let {username} = body 
 
 
     var teamLeader = await database.query(`

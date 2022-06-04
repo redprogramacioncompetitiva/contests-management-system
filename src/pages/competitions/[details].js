@@ -9,6 +9,7 @@ import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
+import TeamsComponent from '../../components/TeamsComponent';
 var state = {
     idCompetition : 0, //10
     idTeam:'',  //'TM000000'
@@ -54,7 +55,7 @@ const getDetails = async e => {
     return { competitionDetails : details }
 }*/
 
-const showPosts = () => {
+/* const showPosts = () => {
   const [team, setTeam] = useState('');
   const [posts, setPosts] = useState([]);
   const handleChange = (event) => {
@@ -104,7 +105,7 @@ const showPosts = () => {
     
   );
 }
-
+ */
 
 Details.getInitialProps = async(context) => {
   const path = context.asPath.split('/');
@@ -129,6 +130,8 @@ Details.getInitialProps = async(context) => {
   
 }
 export default function Details({competitionDetails, data}) {
+
+  const {data:session} = useSession();
   console.log(data)
     const handleJoin = async e => {
         let config1 = {
@@ -161,7 +164,8 @@ export default function Details({competitionDetails, data}) {
         }
     }
     
-    return (
+    if (session){
+      return (
         <Box>
           <Typography id="modal-competition-name" variant="h5" component="h2">
             {competitionDetails.name}
@@ -194,6 +198,8 @@ export default function Details({competitionDetails, data}) {
             </Typography>
           </div>
 
+          <TeamsComponent username = {session.username}></TeamsComponent>
+
           <Box sx={{ display:'flex' ,justifyContent:'center'}}>
             <Button sx={{width:100, backgroundColor: '#01A4FF', color: '#FFFFFF', borderRadius: 2}} variant='contained    ' onClick={handleJoin}>
                 Join
@@ -201,4 +207,9 @@ export default function Details({competitionDetails, data}) {
           </Box>
         </Box>
     );
+    }else{
+      return (
+        <button onClick={ signIn}> signIn</button>
+      )
+    }
 }
