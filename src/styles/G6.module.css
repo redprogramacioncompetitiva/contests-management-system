@@ -1,14 +1,84 @@
+#competitionContainer {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 10%;
+  margin: auto;
+  max-width: 80%;
+}
+
+#competitionsEnabled {
+  grid-column: 1;
+  align-items: center;
+  margin-top: 15px;
+  margin-bottom: 20px;
+}
+
+#competitionsDisabled {
+  grid-column: 2;
+  margin-top: 15px;
+}
+
 .card {
-  -webkit-box-shadow: 0px 0px 15px 3px #000000;
-  box-shadow: 0px 0px 15px 3px #000000;
+  -webkit-border-radius: 20px;
+  border-radius: 20px;
+  background: #ffab03;
+  -webkit-box-shadow: 8px 8px 10px #c28202, -8px -8px 10px #ffd404;
+  box-shadow: 8px 8px 10px #c28202, -8px -8px 10px #ffd404;
+
   transition: transform 300ms ease-in-out;
-  border-radius: 10px;
   padding: 5px;
+  cursor: pointer;
+  margin: 20px 20px 60px 20px;
+  color: #fffd;
+  text-align: center;
+  background-color: #ffab03;
 }
 
 .card:hover {
   cursor: pointer;
-  -webkit-box-shadow: -9px 11px 11px 6px rgba(0, 0, 0, 0.71);
-  box-shadow: -9px 11px 11px 6px rgba(0, 0, 0, 0.71);
+  -webkit-border-radius: 20px;
+  border-radius: 20px;
+  background: #ffab03;
+  -webkit-box-shadow: 12px 12px 10px #c28202, -12px -12px 10px #ffd404;
+  box-shadow: 12px 12px 10px #c28202, -12px -12px 10px #ffd404;
   transform: translate3d(0, -5px, 0);
+}
+
+.teamContainer{
+  display: flex;
+  flex-wrap: wrap;
+  margin: auto;
+  align-items: center;
+  column-gap: 10%;
+  margin: 20px 20px 60px 20px;
+}
+
+
+.teamSection{
+  margin-bottom: 20px;
+  align-items: center;
+}
+
+.searchBar{
+  margin: 20px 20px 60px 20px;
+  border-style: none;
+  color: #fffd;
+}
+
+.searchInput{
+  border-radius: 20px;
+  padding-left: 20px;
+  padding-right: 10px;
+  border-style: none;
+  background-color: rgba(152, 152, 152, 0.867);
+  color: #fffd;
+}
+
+.searchButton{
+  margin-left: 20px;
+  color:  #fffd;
+  background-color: #ffab03;
+  border-style: none;
+  padding: 5px;
+  border-radius: 10px;
 }
