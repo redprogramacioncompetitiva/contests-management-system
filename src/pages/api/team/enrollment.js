@@ -6,7 +6,7 @@ export default async function handle(req, res){
     let {idCompetition, idTeam, username} = body 
 
     var teamLeader = await database.query(
-        `SELECT TEAM_LEADER
+        `SELECT LEADER_USERNAME
         FROM TEAM
         WHERE ID_TEAM = '${idTeam}'`
     )
@@ -54,7 +54,6 @@ export default async function handle(req, res){
                     WHERE USERNAME = '${teamCompetitors.rows[index].username}' 
                     AND ID_COMPETITION = ${idCompetition}`
                 )
-                
                 if(alreadyTeam.rowCount!==0){
                     alreadyInCompetition = false;
                     break
