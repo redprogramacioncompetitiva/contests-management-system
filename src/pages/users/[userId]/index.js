@@ -11,6 +11,10 @@ function userIndex({ data }) {
   const router = useRouter();
   const { data: session } = useSession();
 
+  function onClick(e){
+    console.log(e)
+  }
+
   if (session && session.username == router.query.userId) {  
       return (
         <div className={style.bootStrapContainer}>
@@ -23,12 +27,14 @@ function userIndex({ data }) {
               <div>
                 {data.competitionsEnabled.map((e) => (
                   <CompetitionItem
+                    id = {e.id}
                     competitionName={e.name}
                     description={e.description}
                     competitionStartDate={e.startInscription}
                     competitionEndDate={e.endInscription}
                     competitionEnrollStartDate={e.startDate}
                     competitionEnrollEndDate={e.endDate}
+                    onClick = {onClick}
                   />
                 ))}
               </div>
@@ -41,12 +47,14 @@ function userIndex({ data }) {
               <div>
                 {data.competitionsDisabled.map((e) => (
                   <CompetitionItem
+                    id = {e.id}
                     competitionName={e.name}
                     description={e.description}
                     competitionStartDate={e.startInscription}
                     competitionEndDate={e.endInscription}
                     competitionEnrollStartDate={e.startDate}
                     competitionEnrollEndDate={e.endDate}
+                    onClick = {onClick}
                   />
                 ))}
               </div>

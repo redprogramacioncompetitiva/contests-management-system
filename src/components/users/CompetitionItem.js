@@ -6,19 +6,21 @@ export default class CompetitionItems extends Component {
 
     
     constructor(props) {
-        super(props)
+        super(props);
+        this.state = { test : function action(e){
+            location = "/competitions/" + props.id
+        }};
     }
-
     
     render() {
         return (
-            <section className={style.card}>
+            <section className={style.card} onClick={this.state.test} >
                 <section className={style.cardBody}>
                     <h3>{this.props.competitionName}</h3>
                     <br/>
                     <h5>{this.props.description}</h5>
                     <br/>
-                    <section className={style.container}>
+                    <section className={style.container} >
                     
                     <h5>Fecha de inicio y cierre inscripción {"\n"}</h5>
                     <ul>
