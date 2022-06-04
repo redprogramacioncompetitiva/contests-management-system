@@ -41,9 +41,9 @@ export default async function handler(req, res) {
         
         try {
           const response = await db.query(query,values);
-          res.status(200).json(response.rows[0]);
+          //res.status(200).json(response.rows[0]);
         } catch (e) {
-          res.status(400).json({message: e.message});
+          //res.status(400).json({message: e.message});
         }
 
         //Add members to team if they exist
@@ -55,22 +55,17 @@ export default async function handler(req, res) {
           if(foundINdex == -1){
             //console.log("NOT FOUND");
           }else{
-            console.log("FOUND");
-            const valuesMember =[teamInfo.tm.members[i], id_team];
-            const query = 'INSERT INTO USERS_TEAM(USERNAME, ID_TEAM) VALUES ($1,$2)';
-
-            try {
-              const response = await db.query(query,valuesMember);
-              res.status(200).json(response.rows[0]);
-            } catch (error) {
-              res.status(400).json({message: e.message});
-            }
-            
-            
+            //console.log("FOUND");
+            let valuesMember =[teamInfo.tm.members[i], id_team];
+            //console.log(teamInfo.tm.members[i]+"; "+id_team);
+            let query = 'INSERT INTO USERS_TEAM(USERNAME, ID_TEAM) VALUES ($1,$2)';          
+            let response = await db.query(query,valuesMember);
+          
             
             //return res.status(200).json(response.rows[0]);
           }
         }
+        res.status(200).send("okay");
         //let userFoundIndex = registeredUsers.findIndex(element => element.username);
 
     }
