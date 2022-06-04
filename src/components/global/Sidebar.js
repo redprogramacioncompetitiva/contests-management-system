@@ -18,13 +18,6 @@ const Sidebar = () => {
                 <ul>
                     <div className="spacer"></div>
                     <li>
-                        <a href="/register">
-                            <FaAngleRight id="sidebar-list-item" />
-                            <span id="sidebar-link"> Registrar </span>
-                        </a>
-                    </li>
-                    <div className="spacer"></div>
-                    <li>
                         <a href="/createTeam">
                             <FaAngleRight id="sidebar-list-item" />
                             <span id="sidebar-link"> Crear equipo </span>
@@ -35,13 +28,6 @@ const Sidebar = () => {
                         <a href="/createCompetition">
                             <FaAngleRight id="sidebar-list-item" />
                             <span id="sidebar-link"> Crear Competencia </span>
-                        </a>
-                    </li>
-                    <div className="spacer"></div>
-                    <li>
-                        <a href="/createTeam">
-                            <FaAngleRight id="sidebar-list-item" />
-                            <span id="sidebar-link"> Crear equipo </span>
                         </a>
                     </li>
                     <div className="spacer"></div>
@@ -70,7 +56,7 @@ const Sidebar = () => {
                         <hr></hr>
                         <div className="footer">
                             <div className="user-logged">
-                                <FaUserShield />  {session.name}
+                                <FaUserShield />  {session.username}
                             </div>
 
                             <div className="logout-block">
