@@ -1,15 +1,15 @@
 const { Pool } = require("pg");
 
-var db;
+let db;
 
 if (!db) {
   db = new Pool({
-    host: "localhost",
-    user: "postgres",
-    database: "PI1",
-    password: "password",
-    port: 5432,
-  });
+    host: 'localhost',
+    user: 'postgres',
+    database: 'PI1',
+    password: '15164414',
+    port: "5432"
+  })
 }
 
 export default db;

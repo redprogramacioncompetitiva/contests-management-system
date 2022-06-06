@@ -5,6 +5,8 @@ import TeamsItem from '../components/users/TeamsItem'
 import CustomHeader from '../components/CustomHeader'
 
 
+import { Button } from '@mui/material'
+
 
 import { useSession, signIn, signOut } from "next-auth/react"
 export default function Component() {
@@ -29,8 +31,7 @@ export default function Component() {
 
     <div className={styles.main}>
       <h1 className={styles.title}>Not signed in</h1>
-      <button onClick={() => signIn()} className={styles.card}>Sign in</button>
-
+      <Button onClick={() => signIn()}>Sign in</Button>
     </div>
   )
 }
