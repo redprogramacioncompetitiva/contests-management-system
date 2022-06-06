@@ -1,4 +1,3 @@
-
 .row {
   display: flex;
 }
@@ -13,79 +12,77 @@
   margin-left: 12%;
   margin-right: 12%;
   margin-top: 4rem;
-  
 }
 
-.h1{
-  font-size: 3rem  ;
+.h1 {
+  font-size: 3rem;
   font-weight: bold;
 }
 
-.h3{
-  margin-top: -1rem;
-  font-size: 1.8rem;
+.h3 {
+  margin-top: 1rem;
+  font-size: 1.6rem;
   font-weight: 100;
   color: #a5a5a5;
-
 }
 
-.hr{
-  margin-top: -2rem;
-  border-style:  solid;
-  border-width: .1px;
-  border-color: #D6D6D6;
+.hr {
+  margin-top: -1.5rem;
+  border-style: solid;
+  border-width: 0.1px;
+  border-color: #d6d6d6;
 }
 
-.h5{
+.h5 {
   font-size: 1.2rem;
   font-weight: 400;
   margin-top: 1rem;
-  margin-bottom: .7rem;
+  margin-bottom: 0.7rem;
 }
 
-.inputWidth{
+.inputWidth {
   width: 100%;
-  border-radius: .4rem;
+  border-radius: 0.4rem;
   height: 2rem;
   margin-top: -1rem;
   border-style: solid;
-  border-color: #C4C4C4;
+  border-color: #c4c4c4;
 }
 
-.submitBtn{
+.submitBtn {
   width: 100%;
   color: white;
-  background-color: #4A4A4A;
+  background-color: #4a4a4a;
   height: 2.5rem;
-  border-radius: .5rem;
+  border-radius: 0.5rem;
   border: none;
   font-size: 1rem;
   font-weight: 500;
 }
 
-.cancelBtn{
+.cancelBtn {
   margin-top: 1rem;
   width: 100%;
-  color: #4A4A4A;
+  color: #4a4a4a;
   background-color: white;
   height: 2.5rem;
-  border-radius: .5rem;
+  border-radius: 0.5rem;
   border: solid;
   font-size: 1rem;
   font-weight: 500;
 }
 
-.homeImg{
+.homeImg {
   display: block;
-  object-fit:cover;
+  object-fit: cover;
   width: 100%;
   height: 100vh;
 }
-.button{
+.button {
   margin-left: 1rem;
   margin-bottom: 1.5rem;
-  color:white;
-  background-color: #4A4A4A;
+  color: white;
+  background-color: #4a4a4a;
   width: 1.5rem;
   height: 1.5rem;
   border-style: none;
