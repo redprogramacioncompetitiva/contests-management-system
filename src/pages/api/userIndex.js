@@ -1,8 +1,10 @@
 import db from "../../util/database";
 import { Team, Competition } from "../../model/classes";
 
+
 export default async function handler(req, res) {
   const { method, body } = req;
+  console.log(body)
   const teamsIds = await db.query(
     "SELECT * FROM TEAM WHERE ID_TEAM IN (SELECT ID_TEAM FROM USERS_TEAM WHERE USERNAME = $1)",
     [body.user]
