@@ -4,7 +4,6 @@ import { Team, Competition } from "../../model/classes";
 
 export default async function handler(req, res) {
   const { method, body } = req;
-  console.log(body)
   const teamsIds = await db.query(
     "SELECT * FROM TEAM WHERE ID_TEAM IN (SELECT ID_TEAM FROM USERS_TEAM WHERE USERNAME = $1)",
     [body]
@@ -16,21 +15,28 @@ export default async function handler(req, res) {
       [teamsIds.rows[index].id_team]
     );
     var institution = await db.query(
-      "SELECT NAME FROM INSTITUTION WHERE ID_INSTITUION = $1",
+      "SELECT NAME FROM INSTITUTION WHERE ID_INSTITUTION = $1",
       [teamsIds.rows[index].id_institution]
     );
 
     /* /competitions/idCompetition
     */
 
+    var membersData = []
+    for (let index = 0; index < members.rows.length; index++) {
+      console.log(members.rows[index].username)
+      membersData.push(members.rows[index].username);
+    }
+
     var newTeam = {
       id: teamsIds.rows[index].id_team,
-      institution: institution.rows[0],
-      teamName: teamsIds.rows[index].team_nam,
+      institution: institution.rows[0].name,
+      teamName: teamsIds.rows[index].team_name,
       members: membersData,
     };
     teams.push(newTeam);
   }
+  console.log(teams)
 
   var competitionsEnabled = [];
   //Search competitions that accepts enrollment
