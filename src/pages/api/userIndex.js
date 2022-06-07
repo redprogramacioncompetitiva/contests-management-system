@@ -7,7 +7,7 @@ export default async function handler(req, res) {
   console.log(body)
   const teamsIds = await db.query(
     "SELECT * FROM TEAM WHERE ID_TEAM IN (SELECT ID_TEAM FROM USERS_TEAM WHERE USERNAME = $1)",
-    [body.user]
+    [body]
   );
   var teams = [];
   for (let index = 0; index < teamsIds.rows.length; index++) {
