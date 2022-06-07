@@ -72,7 +72,15 @@ function userIndex({ data }) {
 }
 
 userIndex.getInitialProps = async (ctx) => {
-  const testData = await fetch("http://localhost:3000/api/userIndex");
+  var test = ctx.query.userId
+  let config = {
+    method: 'POST',
+    
+    body: test}
+    //console.log(config.body)
+    //console.log(ctx.query.userId)
+
+  const testData = await fetch("http://localhost:3000/api/userIndex",config);
   const r = await testData.json();
   return { data: r };
 };
