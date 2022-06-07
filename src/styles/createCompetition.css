@@ -1,21 +1,108 @@
+@import url("https://fonts.googleapis.com/css2?family=Urbanist:wght@500&display=swap");
+
 .container-competition {
+    font-family: 'Urbanist', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     display: flex;
     justify-content: center;
     flex-direction: column;
     align-content: center;
     align-items: center;
 }
-
+/* 
 .form-container {
-    min-width: 70vw;
     border: 1px solid black;
     padding: 1em;
     border-radius: .5em;
+} */
+
+.competition-title {
+    margin: 0 0 15px 0;
+}
+
+.competition-title b {
+    color: #fe8a2d;
+    text-shadow: 0px 0px 25px #fe8b2db9;
 }
 
 .form-container div {
-    margin: .5em;
-    min-width: 70vw;
+    margin: .5em 0;
+    width: 30vw;
     display: flex;
-    justify-content: space-between;
+    /* overflow: hidden; */
+}
+
+.form-input {
+    flex: 1 1 0;
+    /* text-align: center; */
+    border-radius: 2em 0px 0px 2em;
+    padding: .7em .8em;
+    border: 1px solid rgb(128, 128, 128);
+}
+
+input[type="number"] {
+    min-width:50px;
+}
+
+.name-text {
+    border-radius: 2em;
+}
+
+.textarea {
+    border-radius: 10px;
+    width:100%;
+    height: 150px;
+    resize: none;
+}
+
+.right {
+    border-radius: 0px 2em 2em 0px
+}
+
+.right::-webkit-input-placeholder {
+    color:rgb(73, 73, 73);
+    font-weight: bold;
+}
+.right:-moz-placeholder {
+    color:rgb(73, 73, 73);
+    font-weight: bold;
+}
+.right:-ms-input-placeholder {
+    color:rgb(73, 73, 73);
+    font-weight: bold;
+}
+
+.create-btn {
+    background-color: #fe8a2d;
+    font-size:16px;
+    color: white;
+    padding: 0.5em 2em;
+    border-radius: 5px;
+    box-shadow: rgba(0, 0, 0, 0.40) 0px 3px 3px;
+    /* border-color: transparent; */
+    border: none;
+    cursor: pointer;
+    transition: .3s;
+}
+
+.create-btn:hover {
+    background-color: #ff9c4b;
+}
+
+.back-btn {
+    background-color: #fe8a2d;
+    font-size:16px;
+    color: white;
+    padding: 0.5em 2em;
+    border-radius: 5px;
+    box-shadow: rgba(0, 0, 0, 0.40) 0px 3px 3px;
+    /* border-color: transparent; */
+    border: none;
+    cursor: pointer;
+    transition: .3s;
+    position: relative;
+    left: 218px;
+}
+
+.back-btn:hover {
+    background-color: #ff9c4b;
 }
